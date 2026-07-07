@@ -12,4 +12,10 @@ app.use(express.json());
 app.use("/api/books", bookRoutes);
 app.use("/api/users", userRoutes);
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "E-Library REST API is running successfully",
+  });
+});
+
 module.exports = app;
