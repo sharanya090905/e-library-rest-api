@@ -41,7 +41,7 @@ A full-stack web application for managing books in an online library.
 ## Live Demo
 
 Frontend:
-https://your-vercel-url.vercel.app
+https://e-library-rest-api.vercel.app/
 
 Backend:
 https://e-library-rest-api.onrender.com
