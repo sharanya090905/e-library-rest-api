@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/api";
 
 function Books() {
@@ -20,6 +21,28 @@ function Books() {
 
     fetchBooks();
   }, [search]);
+
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      await api.delete(`/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      alert("Book Deleted Successfully");
+
+      setBooks(
+        books.filter((book) => book._id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+      alert("Failed To Delete Book");
+    }
+  };
+  
 
   return (
     <div>
@@ -43,9 +66,23 @@ function Books() {
         books.map((book) => (
           <div key={book._id}>
             <h3>{book.title}</h3>
+
             <p>Author: {book.author}</p>
+
             <p>Price: ₹{book.price}</p>
+
             <p>Category: {book.category}</p>
+
+            <button
+              onClick={() =>
+                handleDelete(book._id)
+              }
+            >
+              Delete
+            </button>
+            <Link to={`/edit-book/${book._id}`}>
+  <button>Edit</button>
+</Link>
 
             <hr />
           </div>
