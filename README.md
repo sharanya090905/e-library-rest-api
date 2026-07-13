@@ -37,5 +37,15 @@ A full-stack web application for managing books in an online library.
 ### Media Storage
 - Cloudinary
 
+
+## Live Demo
+
+Frontend:
+https://your-vercel-url.vercel.app
+
+Backend:
+https://e-library-rest-api.onrender.com
+
+
 ## Author
 Sharanya Gupta
