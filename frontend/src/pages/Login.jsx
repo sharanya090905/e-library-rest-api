@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -14,14 +17,14 @@ function Login() {
         password,
       });
 
-      alert("Login Successful");
-
-      console.log(response.data);
-
       localStorage.setItem(
         "token",
         response.data.accessToken
       );
+
+      alert("Login Successful");
+
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("Login Failed");
@@ -66,3 +69,4 @@ function Login() {
 }
 
 export default Login;
+

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function AddBook() {
@@ -7,14 +8,15 @@ function AddBook() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token =
-      localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     try {
-      const response = await api.post(
+      await api.post(
         "/books",
         {
           title,
@@ -29,9 +31,9 @@ function AddBook() {
         }
       );
 
-      console.log(response.data);
-
       alert("Book Added Successfully");
+
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("Failed To Add Book");
@@ -47,9 +49,7 @@ function AddBook() {
           type="text"
           placeholder="Title"
           value={title}
-          onChange={(e) =>
-            setTitle(e.target.value)
-          }
+          onChange={(e) => setTitle(e.target.value)}
         />
 
         <br />
@@ -59,9 +59,7 @@ function AddBook() {
           type="text"
           placeholder="Author"
           value={author}
-          onChange={(e) =>
-            setAuthor(e.target.value)
-          }
+          onChange={(e) => setAuthor(e.target.value)}
         />
 
         <br />
@@ -71,9 +69,7 @@ function AddBook() {
           type="number"
           placeholder="Price"
           value={price}
-          onChange={(e) =>
-            setPrice(e.target.value)
-          }
+          onChange={(e) => setPrice(e.target.value)}
         />
 
         <br />
@@ -83,9 +79,7 @@ function AddBook() {
           type="text"
           placeholder="Category"
           value={category}
-          onChange={(e) =>
-            setCategory(e.target.value)
-          }
+          onChange={(e) => setCategory(e.target.value)}
         />
 
         <br />
@@ -100,4 +94,3 @@ function AddBook() {
 }
 
 export default AddBook;
-``

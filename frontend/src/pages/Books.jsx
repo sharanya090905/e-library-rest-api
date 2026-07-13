@@ -42,11 +42,12 @@ function Books() {
       alert("Failed To Delete Book");
     }
   };
-  
 
   return (
-    <div>
-      <h2>Books</h2>
+    <div className="container">
+      <h2 className="page-title">
+        E-Library Books
+      </h2>
 
       <input
         type="text"
@@ -64,27 +65,43 @@ function Books() {
         <p>No books found</p>
       ) : (
         books.map((book) => (
-          <div key={book._id}>
+          <div
+            key={book._id}
+            className="book-card"
+          >
             <h3>{book.title}</h3>
 
-            <p>Author: {book.author}</p>
+            <p>
+              <strong>Author:</strong>{" "}
+              {book.author}
+            </p>
 
-            <p>Price: ₹{book.price}</p>
+            <p>
+              <strong>Price:</strong> ₹
+              {book.price}
+            </p>
 
-            <p>Category: {book.category}</p>
+            <p>
+              <strong>Category:</strong>{" "}
+              {book.category}
+            </p>
 
-            <button
-              onClick={() =>
-                handleDelete(book._id)
-              }
-            >
-              Delete
-            </button>
-            <Link to={`/edit-book/${book._id}`}>
-  <button>Edit</button>
-</Link>
+            <div className="book-actions">
+              <Link
+                to={`/edit-book/${book._id}`}
+              >
+                <button>Edit</button>
+              </Link>
 
-            <hr />
+              <button
+                className="delete-btn"
+                onClick={() =>
+                  handleDelete(book._id)
+                }
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))
       )}

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function EditBook() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -51,6 +52,8 @@ function EditBook() {
       );
 
       alert("Book Updated Successfully");
+
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("Failed To Update Book");
