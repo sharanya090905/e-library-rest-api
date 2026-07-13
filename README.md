@@ -1,26 +1,41 @@
-# E-Library REST API
+# E-Library Management System
 
-A RESTful backend application for managing books in an online library.
+A full-stack web application for managing books in an online library.
 
 ## Features
 
 - User Registration
 - User Login
 - JWT Authentication
-- Protected Routes
-- Book CRUD Operations
+- Add Books
+- View Books
 - Search Books
-- Cloudinary Integration
+- Update Books
+- Delete Books
+- Logout Functionality
 
 ## Tech Stack
 
+### Frontend
+- React.js
+- React Router DOM
+- Axios
+- CSS
+
+### Backend
 - Node.js
 - Express.js
-- MongoDB
+
+### Database
+- MongoDB Atlas
 - Mongoose
+
+### Authentication
 - JWT
 - bcrypt
 
-## Author
+### Media Storage
+- Cloudinary
 
+## Author
 Sharanya Gupta
