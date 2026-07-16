@@ -60,9 +60,11 @@ function EditBook() {
     }
   };
 
-  return (
-    <div>
+ return (
+  <div className="content">
+    <div className="form-container">
       <h2>Edit Book</h2>
+
 
       <form onSubmit={handleUpdate}>
         <input
@@ -109,6 +111,7 @@ function EditBook() {
           Update Book
         </button>
       </form>
+    </div>
     </div>
   );
 }

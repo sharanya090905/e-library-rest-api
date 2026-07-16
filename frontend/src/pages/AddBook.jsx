@@ -41,7 +41,8 @@ function AddBook() {
   };
 
   return (
-    <div>
+  <div className="content">
+    <div className="form-container">
       <h2>Add Book</h2>
 
       <form onSubmit={handleSubmit}>
@@ -89,6 +90,7 @@ function AddBook() {
           Add Book
         </button>
       </form>
+    </div>
     </div>
   );
 }

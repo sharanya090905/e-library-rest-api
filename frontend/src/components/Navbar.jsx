@@ -15,28 +15,30 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      <div className="nav-left">
-        <Link to="/">Books</Link>
+    <>
+      <nav className="navbar">
+        <div className="nav-left">
+          <Link to="/">Books</Link>
 
-        {token && (
-          <Link to="/add-book">
-            Add Book
-          </Link>
-        )}
-
-        {!token && (
-          <>
-            <Link to="/login">
-              Login
+          {token && (
+            <Link to="/add-book">
+              Add Book
             </Link>
+          )}
 
-            <Link to="/register">
-              Register
-            </Link>
-          </>
-        )}
-      </div>
+          {!token && (
+            <>
+              <Link to="/login">
+                Login
+              </Link>
+
+              <Link to="/register">
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+      </nav>
 
       {token && (
         <div className="user-section">
@@ -49,7 +51,7 @@ function Navbar() {
           </button>
         </div>
       )}
-    </nav>
+    </>
   );
 }
 
