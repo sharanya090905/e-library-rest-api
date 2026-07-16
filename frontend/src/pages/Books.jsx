@@ -6,6 +6,8 @@ function Books() {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -86,22 +88,24 @@ function Books() {
               {book.category}
             </p>
 
-            <div className="book-actions">
-              <Link
-                to={`/edit-book/${book._id}`}
-              >
-                <button>Edit</button>
-              </Link>
+            {token && (
+              <div className="book-actions">
+                <Link
+                  to={`/edit-book/${book._id}`}
+                >
+                  <button>Edit</button>
+                </Link>
 
-              <button
-                className="delete-btn"
-                onClick={() =>
-                  handleDelete(book._id)
-                }
-              >
-                Delete
-              </button>
-            </div>
+                <button
+                  className="delete-btn"
+                  onClick={() =>
+                    handleDelete(book._id)
+                  }
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         ))
       )}

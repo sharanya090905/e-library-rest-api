@@ -22,6 +22,11 @@ function Login() {
         response.data.accessToken
       );
 
+      localStorage.setItem(
+        "userEmail",
+        email
+      );
+
       alert("Login Successful");
 
       navigate("/");

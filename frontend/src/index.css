@@ -114,3 +114,40 @@ button:hover {
 .navbar button:hover {
   background: #dc2626;
 }
+
+.navbar {
+  background: #020617;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #60a5fa;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-name {
+  background: #1e293b;
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: #60a5fa;
+  font-weight: bold;
+}
