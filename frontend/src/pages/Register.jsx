@@ -17,9 +17,12 @@ function Register() {
         name,
         email,
         password,
+        
       });
 
       alert("Registration Successful");
+
+      localStorage.setItem("userName", name);
 
       navigate("/login");
     } catch (error) {

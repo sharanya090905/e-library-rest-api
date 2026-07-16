@@ -157,3 +157,14 @@ button:hover {
   margin-left: 240px;
   padding: 20px;
 }
+
+.profile-link {
+  font-size: 28px;
+  text-decoration: none;
+}
+
+.profile-icon {
+  font-size: 70px;
+  text-align: center;
+  margin-bottom: 20px;
+}

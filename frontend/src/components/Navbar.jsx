@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
+
 function Navbar() {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  const userEmail =
-    localStorage.getItem("userEmail");
+  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -42,9 +42,13 @@ function Navbar() {
 
       {token && (
         <div className="user-section">
-          <span className="profile-name">
-            👤 {userEmail}
-          </span>
+          <Link
+           to="/profile" 
+           className="profile-link"
+           >
+            👤
+          </Link>
+            
 
           <button onClick={handleLogout}>
             Logout
