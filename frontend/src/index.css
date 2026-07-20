@@ -2,50 +2,75 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
 }
 
 body {
-  background-color: #0f172a;
-  color: white;
+  background: radial-gradient(circle at top left, #f2faf0 0%, #d8f0c2 40%, #b4d78f 100%);
+  color: #11301b;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 /* SIDEBAR */
 
 .navbar {
-  background: #020617;
-  width: 220px;
+  background: #2f5d22;
+  width: 240px;
   min-height: 100vh;
-  padding: 20px;
+  padding: 28px 20px;
   position: fixed;
   left: 0;
   top: 0;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.navbar h1,
+.navbar h2,
+.navbar h3 {
+  color: #f7fff4;
 }
 
 .nav-left {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .navbar a {
-  color: white;
+  color: #e8f6e8;
   text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 14px 16px;
+  border-radius: 10px;
+  transition: background 0.25s ease, transform 0.2s ease;
+  position: relative;
+  top: -1px;
 }
 
 .navbar a:hover {
-  background: #1e293b;
+  background: rgba(244, 255, 238, 0.18);
+  transform: translateX(2px);
+}
+
+.navbar a.active {
+  background: rgba(255, 255, 255, 0.16);
 }
 
 /* TOP RIGHT SECTION */
 
 .user-section {
-  position: fixed;
-  top: 15px;
-  right: 20px;
+  position: fixed; 
+  top: 16px;
+  right: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -55,85 +80,135 @@ body {
 .notification-link,
 .profile-link {
   font-size: 20px;
+  color: #1a3a19;
   text-decoration: none;
 }
 
 /* MAIN CONTENT */
 
 .content {
-  margin-left: 240px;
-  padding: 20px;
+  margin-left: 260px;
+  padding: 24px;
+  min-height: 100vh;
 }
+
 .container {
-  width: 90%;
-  max-width: 1000px;
+  width: min(100%, 1120px);
+  margin: 0 auto;
 }
 
 .page-title {
   margin-bottom: 20px;
-  color: #f8fafc;
+  color: #163c1f;
+  letter-spacing: 0.02em;
+  font-size: 2rem;
+}
+
+.page-title + p {
+  color: #2e5f31;
+  margin-bottom: 24px;
 }
 
 /* FORMS */
 
 .form-container {
-  max-width: 500px;
+  max-width: 480px;
+}
+
+.edit-form-container {
+  max-width: 480px;
+  background: rgba(245, 255, 238, 0.98);
+  border: 1px solid rgba(60, 109, 45, 0.28);
+  box-shadow: 0 16px 36px rgba(38, 78, 28, 0.14);
 }
 
 .form-card,
 form {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.88);
+  padding: 35px;
+  border-radius: 18px;
+  border: 1px solid rgba(71, 118, 54, 0.18);
+  box-shadow: 0 18px 45px rgba(33, 79, 28, 0.12);
 }
 
-input {
+form h2 {
+  font-size: 2rem;
+  color: #1f441d;
+  margin-bottom: 18px;
+}
+
+input,
+textarea,
+select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #475569;
-  border-radius: 6px;
-  background: #334155;
-  color: white;
+  display: block;
+  max-width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #b3d4a3;
+  border-radius: 12px;
+  background: #f7fff5;
+  color: #14521d;
+  margin-bottom: 20px;
 }
 
-input::placeholder {
-  color: #cbd5e1;
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid rgba(52, 139, 70, 0.3);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7d9f72;
 }
 
 /* BUTTONS */
 
 button {
-  padding: 10px 16px;
+  padding: 12px 18px;
   border: none;
-  background: #0a7ae2;
-  color: white;
+  background: linear-gradient(135deg, #4b8b2e, #2f5619);
+  color: #f6fff5;
   cursor: pointer;
-  border-radius: 6px;
-  transition: 0.3s;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  background: #080cd4;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 18px rgba(46, 93, 41, 0.18);
 }
 
 .delete-btn {
-  background: #dc2626;
+  background: #d44b4b;
 }
 
 .delete-btn:hover {
-  background: #b91c1c;
+  background: #b83434;
+}
+
+/* SEARCH */
+
+input[type="text"] {
+  max-width: 400px;
 }
 
 /* BOOKS */
 
 .book-card {
-  background: #1e293b;
-  padding: 20px;
-  margin-top: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
-
+  background: rgba(242, 255, 236, 0.95);
+  padding: 18px;
+  margin-top: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(82, 121, 66, 0.18);
+  box-shadow: 0 16px 28px rgba(46, 81, 34, 0.12);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -145,28 +220,40 @@ button:hover {
 }
 
 .book-card h3 {
-  color: #60a5fa;
-  margin-bottom: 10px;
+  color: #1f441d;
+  margin-bottom: 12px;
 }
 
 .book-card p {
-  margin: 8px 0;
+  margin: 10px 0;
+  color: #304c2e;
+}
+
+.book-card strong {
+  color: #1b3518;
 }
 
 .book-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.book-actions button,
+.book-actions a button {
+  min-width: 100px;
 }
 
 /* BOOK IMAGE */
 
 .book-image {
   width: 120px;
-  height: 180px;
+  height: 170px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #475569;
+  border-radius: 14px;
+  border: 1px solid rgba(65, 111, 56, 0.22);
+  background: #eaf7e4;
 }
 
 /* PROFILE PAGE */
@@ -177,28 +264,49 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.profile-card,
+.notification-box {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(77, 124, 65, 0.2);
+  box-shadow: 0 16px 30px rgba(33, 80, 34, 0.12);
+}
+
 .profile-card {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
+  max-width: 560px;
 }
 
 /* NOTIFICATIONS */
 
 .notification-container {
-  max-width: 450px;
+  max-width: 520px;
 }
 
 .notification-box {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
+  margin-top: 18px;
 }
 
 .notification-box hr {
-  margin: 10px 0;
+  margin: 16px 0;
   border: none;
-  border-top: 1px solid #475569;
+  border-top: 1px solid rgba(106, 150, 87, 0.2);
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    position: static;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 18px;
+  }
+
+  .book-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

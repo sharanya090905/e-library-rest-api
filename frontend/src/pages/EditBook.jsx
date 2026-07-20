@@ -62,7 +62,7 @@ function EditBook() {
 
  return (
   <div className="content">
-    <div className="form-container">
+    <div className="form-container edit-form-container">
       <h2>Edit Book</h2>
 
 
