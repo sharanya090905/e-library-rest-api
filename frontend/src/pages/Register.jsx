@@ -14,15 +14,18 @@ function Register() {
 
     try {
       await api.post("/users/register", {
+        
         name,
         email,
         password,
         
       });
 
+      localStorage.setItem("userName", name);
+
       alert("Registration Successful");
 
-      localStorage.setItem("userName", name);
+      
 
       navigate("/login");
     } catch (error) {
