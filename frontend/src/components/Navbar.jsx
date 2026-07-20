@@ -42,6 +42,14 @@ function Navbar() {
 
       {token && (
         <div className="user-section">
+
+          <Link 
+          to="/notifications"
+          className="notification-link"
+          >
+            🔔
+          </Link>
+
           <Link
            to="/profile" 
            className="profile-link"

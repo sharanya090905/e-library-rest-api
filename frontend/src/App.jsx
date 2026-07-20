@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
+import Notifications from "./pages/Notification";
 import Profile from "./pages/Profile";
 import Books from "./pages/Books";
 import Login from "./pages/Login";
@@ -18,6 +19,10 @@ function App() {
           path="/"
           element={<Books />}
         />
+        <Route
+          path="/notifications"
+          element={<Notifications />}
+        />
 
         <Route
           path="/login"
@@ -28,7 +33,7 @@ function App() {
           path="/profile"
           element={<Profile />}
           />
-          
+
         <Route
           path="/register"
           element={<Register />}
