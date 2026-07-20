@@ -95,13 +95,32 @@ select {
 .container {
   width: min(100%, 1120px);
   margin: 0 auto;
+  text-align: center;
+}
+
+/* Center page-level text while keeping form fields and book details left-aligned for readability */
+.content,
+.container {
+  text-align: center;
+}
+
+/* Center the form block itself but keep its internal fields left-aligned */
+form {
+  display: inline-block;
+  text-align: left;
+}
+
+/* Keep book details left aligned inside book cards */
+.book-details {
+  text-align: left;
+  display: block;
 }
 
 .page-title {
   margin-bottom: 20px;
   color: #163c1f;
   letter-spacing: 0.02em;
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 .page-title + p {
@@ -112,27 +131,36 @@ select {
 /* FORMS */
 
 .form-container {
-  max-width: 480px;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .edit-form-container {
-  max-width: 480px;
+  max-width: 640px;
   background: rgba(245, 255, 238, 0.98);
   border: 1px solid rgba(60, 109, 45, 0.28);
   box-shadow: 0 16px 36px rgba(38, 78, 28, 0.14);
 }
 
+/* slightly smaller add form container */
+.add-form-container {
+  max-width: 640px;
+}
+
 .form-card,
 form {
-  background: rgba(255, 255, 255, 0.88);
-  padding: 35px;
-  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 44px;
+  border-radius: 20px;
   border: 1px solid rgba(71, 118, 54, 0.18);
-  box-shadow: 0 18px 45px rgba(33, 79, 28, 0.12);
+  box-shadow: 0 22px 50px rgba(33, 79, 28, 0.14);
+  width: 100%;
+  max-width: 720px;
 }
 
 form h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #1f441d;
   margin-bottom: 18px;
 }
@@ -143,7 +171,7 @@ select {
   width: 100%;
   display: block;
   max-width: 100%;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border: 1px solid #b3d4a3;
   border-radius: 12px;
   background: #f7fff5;
@@ -196,8 +224,23 @@ button:hover {
 
 /* SEARCH */
 
-input[type="text"] {
-  max-width: 400px;
+/* make top-page search input match book box (full container width) */
+.container > input[type="text"],
+.search-input {
+  width: 100%;
+  max-width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0 auto 8px;
+}
+
+/* make text inputs inside forms full width */
+.form-container input[type="text"] {
+  max-width: 100%;
+}
+/* reduce gap under search input inside container */
+.container > input[type="text"] {
+  margin-bottom: 8px;
 }
 
 /* BOOKS */
@@ -205,7 +248,7 @@ input[type="text"] {
 .book-card {
   background: rgba(242, 255, 236, 0.95);
   padding: 18px;
-  margin-top: 16px;
+  margin-top: 10px;
   border-radius: 18px;
   border: 1px solid rgba(82, 121, 66, 0.18);
   box-shadow: 0 16px 28px rgba(46, 81, 34, 0.12);
