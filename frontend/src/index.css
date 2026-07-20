@@ -200,3 +200,22 @@ button:hover {
   border: none;
   border-top: 1px solid #475569;
 }
+
+.book-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.book-details {
+  flex: 1;
+}
+
+.book-image {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #475569;
+}

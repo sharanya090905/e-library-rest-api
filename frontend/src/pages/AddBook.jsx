@@ -7,6 +7,7 @@ function AddBook() {
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [coverImage, setCoverImage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -15,18 +16,29 @@ function AddBook() {
 
     const token = localStorage.getItem("token");
 
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("price", price);
+    formData.append("category", category);
+
+    if (coverImage) {
+      formData.append(
+        "coverImage",
+        coverImage
+      );
+    }
+
     try {
       await api.post(
         "/books",
-        {
-          title,
-          author,
-          price,
-          category,
-        },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type":
+              "multipart/form-data",
           },
         }
       );
@@ -41,56 +53,77 @@ function AddBook() {
   };
 
   return (
-  <div className="content">
-    <div className="form-container">
-      <h2>Add Book</h2>
+    <div className="content">
+      <div className="form-container">
+        <h2>Add Book</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={(e) =>
+              setTitle(e.target.value)
+            }
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <input
-          type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Author"
+            value={author}
+            onChange={(e) =>
+              setAuthor(e.target.value)
+            }
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
+          <input
+            type="number"
+            placeholder="Price"
+            value={price}
+            onChange={(e) =>
+              setPrice(e.target.value)
+            }
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Category"
+            value={category}
+            onChange={(e) =>
+              setCategory(e.target.value)
+            }
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <button type="submit">
-          Add Book
-        </button>
-      </form>
-    </div>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) =>
+              setCoverImage(
+                e.target.files[0]
+              )
+            }
+          />
+
+          <br />
+          <br />
+
+          <button type="submit">
+            Add Book
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

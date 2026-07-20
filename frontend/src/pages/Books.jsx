@@ -25,8 +25,6 @@ function Books() {
   }, [search]);
 
   const handleDelete = async (id) => {
-    const token = localStorage.getItem("token");
-
     try {
       await api.delete(`/books/${id}`, {
         headers: {
@@ -46,7 +44,6 @@ function Books() {
   };
 
   return (
-  
     <div className="container">
       <h2 className="page-title">
         E-Library Books
@@ -72,46 +69,57 @@ function Books() {
             key={book._id}
             className="book-card"
           >
-            <h3>{book.title}</h3>
+            <div className="book-details">
+              <h3>{book.title}</h3>
 
-            <p>
-              <strong>Author:</strong>{" "}
-              {book.author}
-            </p>
+              <p>
+                <strong>Author:</strong>{" "}
+                {book.author}
+              </p>
 
-            <p>
-              <strong>Price:</strong> ₹
-              {book.price}
-            </p>
+              <p>
+                <strong>Price:</strong> ₹
+                {book.price}
+              </p>
 
-            <p>
-              <strong>Category:</strong>{" "}
-              {book.category}
-            </p>
+              <p>
+                <strong>Category:</strong>{" "}
+                {book.category}
+              </p>
 
-            {token && (
-              <div className="book-actions">
-                <Link
-                  to={`/edit-book/${book._id}`}
-                >
-                  <button>Edit</button>
-                </Link>
+              <p>{book.coverImage}</p>
 
-                <button
-                  className="delete-btn"
-                  onClick={() =>
-                    handleDelete(book._id)
-                  }
-                >
-                  Delete
-                </button>
-              </div>
+              {token && (
+                <div className="book-actions">
+                  <Link
+                    to={`/edit-book/${book._id}`}
+                  >
+                    <button>Edit</button>
+                  </Link>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() =>
+                      handleDelete(book._id)
+                    }
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {book.coverImage && (
+              <img
+                src={book.coverImage}
+                alt={book.title}
+                className="book-image"
+              />
             )}
           </div>
         ))
-      )}
-    </div>
-    
+        )}
+      </div>
   );
 }
 
