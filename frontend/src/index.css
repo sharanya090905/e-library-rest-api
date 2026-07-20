@@ -10,10 +10,63 @@ body {
   color: white;
 }
 
+/* SIDEBAR */
+
+.navbar {
+  background: #020617;
+  width: 220px;
+  min-height: 100vh;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.navbar a:hover {
+  background: #1e293b;
+}
+
+/* TOP RIGHT SECTION */
+
+.user-section {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.notification-link,
+.profile-link {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* MAIN CONTENT */
+
+.content {
+  margin-left: 240px;
+  padding: 20px;
+}
 .container {
   width: 90%;
   max-width: 1000px;
-  margin: 30px auto;
 }
 
 .page-title {
@@ -21,22 +74,23 @@ body {
   color: #f8fafc;
 }
 
+/* FORMS */
+
 .form-container {
-  max-width: 450px;
-  margin: 40px auto;
+  max-width: 500px;
 }
 
-.form-card {
+.form-card,
+form {
   background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
+  padding: 20px;
+  border-radius: 10px;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
 }
 
 input {
   width: 100%;
   padding: 12px;
-  margin-top: 8px;
   border: 1px solid #475569;
   border-radius: 6px;
   background: #334155;
@@ -47,10 +101,12 @@ input::placeholder {
   color: #cbd5e1;
 }
 
+/* BUTTONS */
+
 button {
   padding: 10px 16px;
   border: none;
-  background: #2563eb;
+  background: #0a7ae2;
   color: white;
   cursor: pointer;
   border-radius: 6px;
@@ -58,8 +114,18 @@ button {
 }
 
 button:hover {
-  background: #1d4ed8;
+  background: #080cd4;
 }
+
+.delete-btn {
+  background: #dc2626;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+/* BOOKS */
 
 .book-card {
   background: #1e293b;
@@ -67,6 +133,15 @@ button:hover {
   margin-top: 15px;
   border-radius: 10px;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.book-details {
+  flex: 1;
 }
 
 .book-card h3 {
@@ -84,84 +159,17 @@ button:hover {
   margin-top: 15px;
 }
 
-.delete-btn {
-  background: #dc2626;
+/* BOOK IMAGE */
+
+.book-image {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #475569;
 }
 
-.delete-btn:hover {
-  background: #b91c1c;
-}
-
-/* NAVBAR */
-
-.navbar {
-  background: #020617;
-  min-height: 100vh;
-  width: 220px;
-  padding: 20px;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-
-.nav-left {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.navbar a:hover {
-  color: #60a5fa;
-}
-
-.user-section {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.profile-name {
-  background: #1e293b;
-  padding: 8px 14px;
-  border-radius: 20px;
-  color: #60a5fa;
-  font-weight: bold;
-}
-
-.user-section button {
-  background: #ef4444;
-}
-
-.user-section button:hover {
-  background: #dc2626;
-}
-
-.container {
-  margin-left: 260px;
-}
-
-.form-container {
-  margin-left: 300px;
-  margin-top: 40px;
-}
-
-.content {
-  margin-left: 240px;
-  padding: 20px;
-}
-
-.profile-link {
-  font-size: 28px;
-  text-decoration: none;
-}
+/* PROFILE PAGE */
 
 .profile-icon {
   font-size: 70px;
@@ -169,23 +177,17 @@ button:hover {
   margin-bottom: 20px;
 }
 
-
-.notification-link,
-.profile-link {
-  font-size: 20px;
-  text-decoration: none;
-  line-height: 1;
+.profile-card {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
 }
 
-.book-card hr {
-  margin: 10px 0;
-  border: none;
-  border-top: 1px solid #475569;
-
-}
+/* NOTIFICATIONS */
 
 .notification-container {
-  max-width: 500px;
+  max-width: 450px;
 }
 
 .notification-box {
@@ -199,23 +201,4 @@ button:hover {
   margin: 10px 0;
   border: none;
   border-top: 1px solid #475569;
-}
-
-.book-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.book-details {
-  flex: 1;
-}
-
-.book-image {
-  width: 120px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #475569;
 }

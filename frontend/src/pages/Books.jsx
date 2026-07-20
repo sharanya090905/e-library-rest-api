@@ -44,6 +44,7 @@ function Books() {
   };
 
   return (
+    <div className="content">
     <div className="container">
       <h2 className="page-title">
         E-Library Books
@@ -119,6 +120,7 @@ function Books() {
           </div>
         ))
         )}
+      </div>
       </div>
   );
 }

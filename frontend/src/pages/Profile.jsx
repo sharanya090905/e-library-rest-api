@@ -8,7 +8,7 @@ function Profile() {
   return (
     <div className="content">
       <div className="form-container">
-        <div className="book-card">
+        <div className="profile-card">
           <div className="profile-icon">
             👤
           </div>
@@ -19,14 +19,14 @@ function Profile() {
 
           <p>
             <strong>Name:</strong>{" "}
-            {userName || "Not Available"}
+            {userName}
           </p>
 
           <br />
 
           <p>
             <strong>Email:</strong>{" "}
-            {userEmail || "Not Available"}
+            {userEmail}
           </p>
         </div>
       </div>
@@ -35,3 +35,4 @@ function Profile() {
 }
 
 export default Profile;
+``
