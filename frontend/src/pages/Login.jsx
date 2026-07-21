@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 function Login() {
@@ -32,7 +32,7 @@ function Login() {
         console.log(response.data);
         console.log(response.data.user);
         console.log(response.data.user.id);
-        
+
         localStorage.setItem( 
             "userId",
             response.data.user.id
@@ -96,6 +96,11 @@ function Login() {
           <button type="submit">
             Login
           </button>
+
+          <div className="login-register-link">
+            <p>Don't have an account?</p>
+            <Link to="/register">Register</Link>
+          </div>
         </form>
       </div>
     </div>

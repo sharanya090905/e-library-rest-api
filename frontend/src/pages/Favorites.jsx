@@ -65,7 +65,13 @@ function Favorites() {
                 </button>
               </div>
 
-               
+               {book.coverImage && (
+              <img
+                src={book.coverImage}
+                alt={book.title}
+                className="book-image"
+              />
+            )}
                
             
             </div>

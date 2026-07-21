@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import api from "../services/api";
 
 function Books() {
@@ -10,12 +10,12 @@ function Books() {
   const currentUserId =
   localStorage.getItem("userId");
   
+  const location = useLocation();
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await api.get(
-          `/books?search=${search}`
-        );
+        const response = await api.get(`/books?search=${search}`);
 
         setBooks(response.data.data);
       } catch (error) {
@@ -24,7 +24,7 @@ function Books() {
     };
 
     fetchBooks();
-  }, [search]);
+  }, [search, location.key]);
 
   const handleDelete = async (id) => {
     try {
@@ -125,12 +125,10 @@ function Books() {
                 <button
                   onClick={() => addToFavorites(book)}
                 >
-                  ⭐
+                  ❤️
                 </button>
               )}
 
-              <p>{book.coverImage}</p>
-               
               {token &&
                 book.createdBy === currentUserId && (
                   <div className="book-actions">

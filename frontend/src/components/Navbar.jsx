@@ -1,11 +1,14 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 
 function Navbar() {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
-  
+
+  useEffect(() => {
+    document.body.classList.toggle("no-sidebar", !token);
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -15,61 +18,40 @@ function Navbar() {
   };
 
   return (
-    <>
-      <nav className="navbar">
+    <nav className={`navbar ${token ? "sidebar" : "top-navbar"}`}>
+      {token ? (
         <div className="nav-left">
           <Link to="/">Books</Link>
 
-          {token && (
-            <Link to="/add-book">
-              Add Book
-            </Link>
-          )}
-
-          {token && (
-            <Link to="/favorites">
-              Favorites
-            </Link>
-          )}
-
-          {!token && (
-            <>
-              <Link to="/login">
-                Login
-              </Link>
-
-              <Link to="/register">
-                Register
-              </Link>
-            </>
-          )}
+          <Link to="/add-book">Add Book</Link>
+          <Link to="/favorites">Favorites</Link>
         </div>
-      </nav>
-
-      {token && (
-        <div className="user-section">
-
-          <Link 
-          to="/notifications"
-          className="notification-link"
-          >
-            🔔
-          </Link>
-
-          <Link
-           to="/profile" 
-           className="profile-link"
-           >
-            👤
-          </Link>
-            
-
-          <button onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
+      ) : (
+        <div className="topbar-brand">E-Library</div>
       )}
-    </>
+
+      <div className="nav-right">
+        {token ? (
+          <div className="user-section">
+            <Link to="/notifications" className="notification-link">
+              🔔
+            </Link>
+
+            <Link to="/profile" className="profile-link">
+              👤
+            </Link>
+
+            <button onClick={handleLogout} className="logout-btn">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="login-top-btn">
+            Login
+          </Link>
+        )}
+      </div>
+    </nav>
   );
 }
 

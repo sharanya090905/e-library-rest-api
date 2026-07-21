@@ -10,6 +10,8 @@ function EditBook() {
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [coverImage, setCoverImage] = useState(null);
+  const [existingCover, setExistingCover] = useState("");
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -22,6 +24,7 @@ function EditBook() {
         setAuthor(book.author);
         setPrice(book.price);
         setCategory(book.category);
+        setExistingCover(book.coverImage || "");
       } catch (error) {
         console.log(error);
       }
@@ -36,24 +39,34 @@ function EditBook() {
     const token = localStorage.getItem("token");
 
     try {
-      await api.put(
-        `/books/${id}`,
-        {
-          title,
-          author,
-          price,
-          category,
+      const formData = new FormData();
+
+      formData.append("title", title);
+      formData.append("author", author);
+      formData.append("price", price);
+      formData.append("category", category);
+
+      if (coverImage) {
+        formData.append("coverImage", coverImage);
+      }
+
+      const response = await api.put(`/books/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
+
+      // If backend returns updated book, update preview
+      if (response && response.data && response.data.data) {
+        const updated = response.data.data;
+        if (updated.coverImage) setExistingCover(updated.coverImage);
+      }
 
       alert("Book Updated Successfully");
 
-      navigate("/");
+      // navigate back to list and include update flag so list can refetch
+      navigate("/", { state: { updatedAt: Date.now() } });
     } catch (error) {
       console.log(error);
       alert("Failed To Update Book");
@@ -107,9 +120,27 @@ function EditBook() {
         <br />
         <br />
 
-        <button type="submit">
-          Update Book
-        </button>
+        {existingCover && !coverImage && (
+          <div>
+            <p>Current cover:</p>
+            <img
+              src={existingCover}
+              alt="current cover"
+              className="book-image"
+            />
+          </div>
+        )}
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setCoverImage(e.target.files[0])}
+        />
+
+        <br />
+        <br />
+
+        <button type="submit">Update Book</button>
       </form>
     </div>
     </div>
