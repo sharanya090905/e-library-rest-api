@@ -7,7 +7,9 @@ function Books() {
   const [search, setSearch] = useState("");
 
   const token = localStorage.getItem("token");
-
+  const currentUserId =
+  localStorage.getItem("userId");
+  
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -95,10 +97,12 @@ function Books() {
         <p>No books found</p>
       ) : (
         books.map((book) => (
+            
           <div
             key={book._id}
             className="book-card"
           >
+
             <div className="book-details">
               <h3>{book.title}</h3>
 
@@ -126,25 +130,27 @@ function Books() {
               )}
 
               <p>{book.coverImage}</p>
+               
+              {token &&
+                book.createdBy === currentUserId && (
+                  <div className="book-actions">
+                    <Link
+                      to={`/edit-book/${book._id}`}
+                    >
+                     <button>Edit</button>
+                    </Link>
 
-              {token && (
-                <div className="book-actions">
-                  <Link
-                    to={`/edit-book/${book._id}`}
-                  >
-                    <button>Edit</button>
-                  </Link>
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        handleDelete(book._id)
+                      }
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
 
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      handleDelete(book._id)
-                    }
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
             </div>
 
             {book.coverImage && (
