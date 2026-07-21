@@ -53,6 +53,8 @@ function Favorites() {
                   {book.category}
                 </p>
 
+                
+
                 <button
                   className="delete-btn"
                   onClick={() =>
@@ -63,13 +65,9 @@ function Favorites() {
                 </button>
               </div>
 
-              {book.coverImage && (
-                <img3  
-                  src={book.coverImage}    
-                  alt={book.title} 
-                   className="book-image"
-                />
-              )}
+               
+               
+            
             </div>
           ))
         )}

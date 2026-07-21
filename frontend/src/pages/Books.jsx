@@ -117,11 +117,13 @@ function Books() {
                 {book.category}
               </p>
 
-              <button
-                onClick={() => addToFavorites(book)}
-              >
-                ⭐ 
-              </button>
+              {token && (
+                <button
+                  onClick={() => addToFavorites(book)}
+                >
+                  ⭐
+                </button>
+              )}
 
               <p>{book.coverImage}</p>
 

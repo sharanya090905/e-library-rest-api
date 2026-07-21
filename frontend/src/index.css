@@ -20,8 +20,12 @@ select {
 
 /* SIDEBAR */
 
-.navbar {
+.navbar,
+.top-navbar {
   background: #2f5d22;
+}
+
+.navbar {
   width: 240px;
   min-height: 100vh;
   padding: 28px 20px;
