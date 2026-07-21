@@ -28,6 +28,16 @@ function Login() {
       );
 
       if (response.data.user) {
+
+        console.log(response.data);
+        console.log(response.data.user);
+        console.log(response.data.user.id);
+        
+        localStorage.setItem( 
+            "userId",
+            response.data.user.id
+        );
+
         localStorage.setItem(
           "userName",
           response.data.user.name
