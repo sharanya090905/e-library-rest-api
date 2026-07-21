@@ -19,7 +19,7 @@ function Navbar() {
     localStorage.removeItem("userName");
     localStorage.removeItem("userId");
 
-    navigate("/login");
+    navigate("/");
   };
 
   return (
