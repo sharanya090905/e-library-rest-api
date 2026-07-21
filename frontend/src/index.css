@@ -18,6 +18,35 @@ select {
   font: inherit;
 }
 
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 220px;
+  right: 0;
+
+  height: 70px;
+
+  background: #2f5d22;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 25px;
+  z-index: 1000;
+}
+
+.header-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.content {
+  margin-left: 240px;
+  padding: 90px 20px 20px;
+}
+
 /* SIDEBAR */
 
 .navbar,
@@ -47,6 +76,11 @@ select {
   align-items: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   z-index: 1000;
+}
+
+/* Ensure page content is pushed below the fixed top navbar so titles are visible */
+.navbar.top-navbar ~ .content {
+  padding-top: 110px;
 }
 
 body.no-sidebar .content {
@@ -158,7 +192,7 @@ form {
 /* FORMS */
 
 .form-container {
-  max-width: 720px;
+  max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
@@ -172,13 +206,13 @@ form {
 
 /* slightly smaller add form container */
 .add-form-container {
-  max-width: 640px;
+  max-width: 600px;
 }
 
 .form-card,
 form {
   background: rgba(255, 255, 255, 0.95);
-  padding: 44px;
+  padding: 30px;
   border-radius: 20px;
   border: 1px solid rgba(71, 118, 54, 0.18);
   box-shadow: 0 22px 50px rgba(33, 79, 28, 0.14);
@@ -332,15 +366,17 @@ button:hover {
   font-size: 70px;
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-.profile-card,
+.profile-card 
 .notification-box {
   background: rgba(255, 255, 255, 0.92);
   padding: 26px;
   border-radius: 18px;
   border: 1px solid rgba(77, 124, 65, 0.2);
   box-shadow: 0 16px 30px rgba(33, 80, 34, 0.12);
+  
 }
 
 .profile-card {
@@ -354,7 +390,7 @@ button:hover {
 }
 
 .notification-box {
-  margin-top: 18px;
+  margin-top: 30px;
 }
 
 .notification-box hr {
