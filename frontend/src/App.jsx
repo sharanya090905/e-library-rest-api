@@ -7,6 +7,7 @@ import Books from "./pages/Books";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddBook from "./pages/AddBook";
+import Favorites from "./pages/Favorites";
 import EditBook from "./pages/EditBook";
 
 function App() {
@@ -42,6 +43,11 @@ function App() {
         <Route
           path="/add-book"
           element={<AddBook />}
+        />
+
+        <Route
+          path="/favorites"
+          element={<Favorites />}
         />
 
         <Route

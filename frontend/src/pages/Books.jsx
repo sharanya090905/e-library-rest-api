@@ -43,6 +43,35 @@ function Books() {
     }
   };
 
+  const addToFavorites = (book) => {
+    const favorites =
+     JSON.parse(
+      localStorage.getItem("favorites")
+     ) || [];
+
+    const exists = favorites.find(
+     (fav) => fav._id === book._id
+    );
+
+    if (exists) {
+     alert(
+      "Book already in favorites"
+     );
+     return;
+    }
+
+    favorites.push(book);
+
+    localStorage.setItem(
+     "favorites",
+     JSON.stringify(favorites)
+    );
+
+    alert(
+     "Added to favorites"
+    );
+ };
+
   return (
     <div className="content">
     <div className="container">
@@ -87,6 +116,12 @@ function Books() {
                 <strong>Category:</strong>{" "}
                 {book.category}
               </p>
+
+              <button
+                onClick={() => addToFavorites(book)}
+              >
+                ⭐ 
+              </button>
 
               <p>{book.coverImage}</p>
 

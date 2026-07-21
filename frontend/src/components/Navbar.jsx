@@ -26,6 +26,12 @@ function Navbar() {
             </Link>
           )}
 
+          {token && (
+            <Link to="/favorites">
+              Favorites
+            </Link>
+          )}
+
           {!token && (
             <>
               <Link to="/login">
