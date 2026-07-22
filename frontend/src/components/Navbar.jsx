@@ -64,10 +64,6 @@ function Navbar() {
           <div className="nav-left">
             <Link to="/">Books</Link>
 
-            <Link to="/add-book">
-              Add Book
-            </Link>
-
             <Link to="/favorites">
               Favorites
             </Link>

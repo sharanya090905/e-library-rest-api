@@ -87,17 +87,26 @@ function Books() {
         E-Library Books
       </h2>
 
-      <input
-        type="text"
-        placeholder="Search books..."
-        value={search}
-        onChange={(e) =>
-          setSearch(e.target.value)
-        }
-      />
+      <div className="search-row">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search books..."
+          value={search}
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
+        />
 
-      <br />
-      <br />
+        {token && (
+          <Link
+            to="/add-book"
+            className="add-book-btn"
+          >
+            Add Book
+          </Link>
+        )}
+      </div>
 
       {books.length === 0 ? (
         <p>No books found</p>

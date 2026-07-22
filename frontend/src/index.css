@@ -357,12 +357,46 @@ button:hover {
   padding: 14px 18px;
 }
 
+.search-row {
+  display: flex;
+  gap: 400px;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.search-row .search-input {
+  flex: 1 1 320px;
+  max-width: 520px;
+}
+
+.add-book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 130px;
+  padding: 14px 20px;
+  background: #3a7d25;
+  color: #f7fff4;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-book-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 16px rgba(0, 0, 0, 0.12);
+}
+
 /* make text inputs inside forms full width */
 .form-container input[type="text"] {
   max-width: 100%;
 }
 /* reduce gap under search input inside container */
-.container > input[type="text"] {
+.container > input[type="text"],
+.search-row {
   margin-bottom: 0px;
 }
 
