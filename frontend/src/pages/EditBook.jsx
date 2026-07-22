@@ -28,12 +28,12 @@ function EditBook() {
 
         setTitle(book.title);
         setAuthor(book.author);
-        setPublisher(book.publisher);
-        setYearOfPublish(book.yearOfPublish);
-        setPages(book.pages);
-        setLanguage(book.language);
+        setPublisher(book.publisher || "");
+        setYearOfPublish(book.yearOfPublish || "");
+        setPages(book.pages || "");
+        setLanguage(book.language || "");
         setPrice(book.price);
-        setSubCategory(book.subCategory);
+        setSubCategory(book.subCategory || "");
         setCategory(book.category);
         setExistingCover(book.coverImage || "");
       } catch (error) {
