@@ -12,6 +12,9 @@ const book = await Book.create({
   coverImage: req.file ? req.file.path : "",
   createdBy: req.user.sub,
 });
+
+    console.log("REQ USER:", req.user);
+    console.log("REQ BODY:", req.body);
     console.log(book);
 
     res.status(201).json({
