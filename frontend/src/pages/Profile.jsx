@@ -10,7 +10,7 @@ function Profile() {
       <div className="form-container">
         <div className="profile-card">
           <div className="profile-icon">
-            👤
+            👨🏻‍💼
           </div>
 
           <h2>User Profile</h2>

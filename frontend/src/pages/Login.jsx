@@ -60,13 +60,13 @@ function Login() {
 
   return (
     <div className="content">
-      <div className="form-container">
+      <div className="login-form-container">
         <h2 className="page-title">
           Login
         </h2>
 
         <form
-          className="form-card"
+          className="login-form-card"
           onSubmit={handleLogin}
         >
           <input

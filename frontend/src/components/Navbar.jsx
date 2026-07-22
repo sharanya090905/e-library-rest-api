@@ -42,7 +42,7 @@ function Navbar() {
               to="/profile"
               className="profile-link"
             >
-              👤
+              👨🏻‍💼
             </Link>
 
             <button

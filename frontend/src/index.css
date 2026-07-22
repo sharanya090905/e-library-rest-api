@@ -21,7 +21,7 @@ select {
 .top-header {
   position: fixed;
   top: 0;
-  left: 220px;
+  left: 0px;
   right: 0;
 
   height: 70px;
@@ -40,6 +40,7 @@ select {
   color: white;
   font-size: 24px;
   font-weight: bold;
+  left: 20px;
 }
 
 /* SIDEBAR */
@@ -57,6 +58,7 @@ select {
   left: 0;
   top: 0;
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+  margin-top: 40px;
 }
 
 .navbar.top-navbar {
@@ -185,12 +187,71 @@ form {
   margin-bottom: 24px;
 }
 
-/* FORMS */
-
 .form-container {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
+}
+
+.login-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 0px;
+}
+
+.login-form-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding:40px;
+  border-radius: 18px;
+  border: 1px solid rgba(71, 118, 54, 0.18);
+  box-shadow: 0 18px 42px rgba(33, 79, 28, 0.14);
+  width: 100%;
+  max-width: 520px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.login-form-card {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.login-form h2,
+.register-page-title {
+  font-size: 1rem;
+  color: #1f441d;
+  margin-bottom: 18px;
+  margin-top: 0px;
+}
+
+.register-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 0px;
+}
+
+.register-form-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 40px;
+  border-radius: 18px;
+  border: 1px solid rgba(71, 118, 54, 0.18);
+  box-shadow: 0 18px 42px rgba(33, 79, 28, 0.14);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.register-form-card {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.register-page-title {
+  font-size: 2.2rem;
+  font-weight: 700;
 }
 
 .edit-form-container {
@@ -198,6 +259,7 @@ form {
   background: rgba(245, 255, 238, 0.98);
   border: 1px solid rgba(60, 109, 45, 0.28);
   box-shadow: 0 16px 36px rgba(38, 78, 28, 0.14);
+  margin-top: 50px;
 }
 
 /* slightly smaller add form container */
@@ -212,14 +274,16 @@ form {
   border-radius: 20px;
   border: 1px solid rgba(71, 118, 54, 0.18);
   box-shadow: 0 22px 50px rgba(33, 79, 28, 0.14);
-  width: 100%;
+  width: 90%;
   max-width: 720px;
+  margin-top: 40px;
 }
 
 form h2 {
   font-size: 2.2rem;
   color: #1f441d;
   margin-bottom: 18px;
+  margin-top: 20px;
 }
 
 input,
@@ -228,12 +292,12 @@ select {
   width: 100%;
   display: block;
   max-width: 100%;
-  padding: 16px 20px;
+  padding: 15px 20px;
   border: 1px solid #b3d4a3;
   border-radius: 12px;
   background: #f7fff5;
   color: #14521d;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 input[type="number"],
@@ -289,6 +353,8 @@ button:hover {
   display: inline-block;
   box-sizing: border-box;
   margin: 0 auto 8px;
+  margin-top: 20px;
+  padding: 14px 18px;
 }
 
 /* make text inputs inside forms full width */
@@ -297,7 +363,7 @@ button:hover {
 }
 /* reduce gap under search input inside container */
 .container > input[type="text"] {
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 /* BOOKS */
@@ -365,14 +431,26 @@ button:hover {
   margin-top: 30px;
 }
 
-.profile-card 
+.profile-card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.4);
+  margin-top: 50px;
+}
+
+.profile-card,
+
+.profile-card {
+  margin-top: 150px;
+}
+
 .notification-box {
   background: rgba(255, 255, 255, 0.92);
   padding: 26px;
   border-radius: 18px;
   border: 1px solid rgba(77, 124, 65, 0.2);
   box-shadow: 0 16px 30px rgba(33, 80, 34, 0.12);
-  
 }
 
 .profile-card {

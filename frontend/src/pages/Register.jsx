@@ -14,19 +14,14 @@ function Register() {
 
     try {
       await api.post("/users/register", {
-        
         name,
         email,
         password,
-        
       });
 
       localStorage.setItem("userName", name);
 
       alert("Registration Successful");
-
-      
-
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -35,46 +30,47 @@ function Register() {
   };
 
   return (
-  <div className="content">
-    <div className="form-container">
-      <h2>Register</h2>
+    <div className="content">
+      <div className="register-form-container">
+        <h2 className="register-page-title">Register</h2>
 
-      <form onSubmit={handleRegister}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <form
+          className="register-form-card"
+          onSubmit={handleRegister}
+        >
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <button type="submit">
-          Register
-        </button>
-      </form>
-    </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
     </div>
   );
 }
