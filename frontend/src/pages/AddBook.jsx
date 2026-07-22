@@ -8,6 +8,11 @@ function AddBook() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [coverImage, setCoverImage] = useState(null);
+  const [publisher, setPublisher] = useState("");
+  const [yearOfPublish, setYearOfPublish] = useState("");
+  const [pages, setPages] = useState("");
+  const [language, setLanguage] = useState("");
+  const [subCategory, setSubCategory] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,8 +25,13 @@ function AddBook() {
 
     formData.append("title", title);
     formData.append("author", author);
+    formData.append("publisher",publisher);
+    formData.append("yearOfPublish",yearOfPublish);
     formData.append("price", price);
+    formData.append("pages",pages);
+    formData.append("language",language);
     formData.append("category", category);
+    formData.append("subCategory",subCategory);
 
     if (coverImage) {
       formData.append(
@@ -82,6 +92,30 @@ function AddBook() {
           <br />
           <br />
 
+          <input  
+            type="text"  
+            placeholder="Publisher"
+            value={publisher}  
+            onChange={(e) =>
+              setPublisher(e.target.value)
+               }
+            />
+            
+            <br />
+            <br />
+
+          <input
+            type="number"
+            placeholder="Year of Publish"
+            value={yearOfPublish}
+            onChange={(e) =>
+              setYearOfPublish(e.target.value)
+             }
+          />
+
+           <br />
+           <br />
+
           <input
             type="number"
             placeholder="Price"
@@ -95,11 +129,48 @@ function AddBook() {
           <br />
 
           <input
+            type="number"
+            placeholder="Number of Pages"
+            value={pages}
+            onChange={(e) =>
+              setPages(e.target.value)
+            }
+          />
+
+          <br />
+          <br />
+
+          <input
+            type="text"
+            placeholder="Language"
+            value={language}
+            onChange={(e) =>
+              setLanguage(e.target.value)
+            }
+          />
+
+          <br />
+          <br />
+
+
+          <input
             type="text"
             placeholder="Category"
             value={category}
             onChange={(e) =>
               setCategory(e.target.value)
+            }
+          />
+
+          <br />
+          <br />
+
+          <input
+            type="text"
+            placeholder="Sub Category"
+            value={subCategory}
+            onChange={(e) =>
+              setSubCategory(e.target.value)
             }
           />
 

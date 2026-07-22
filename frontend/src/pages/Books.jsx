@@ -11,6 +11,7 @@ function Books() {
   localStorage.getItem("userId");
   
   const location = useLocation();
+  const updatedAt = location.state?.updatedAt;
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -24,7 +25,7 @@ function Books() {
     };
 
     fetchBooks();
-  }, [search, location.key]);
+  }, [search, location.key, updatedAt]);
 
   const handleDelete = async (id) => {
     try {
@@ -127,8 +128,29 @@ function Books() {
               </p>
 
               <p>
+                <strong>Publisher:</strong>{" "}
+                {book.publisher}
+              </p>
+
+              <p>
+                <strong>Year:</strong>{" "}
+                {book.yearOfPublish}
+              </p>
+
+
+              <p>
                 <strong>Price:</strong> ₹
                 {book.price}
+              </p>
+
+              <p>
+                <strong>Pages:</strong>{" "}
+                {book.pages}
+              </p>
+
+              <p>
+                <strong>Language:</strong>{" "}
+                {book.language}
               </p>
 
               <p>
@@ -136,13 +158,10 @@ function Books() {
                 {book.category}
               </p>
 
-              {token && (
-                <button
-                  onClick={() => addToFavorites(book)}
-                >
-                  ❤️
-                </button>
-              )}
+              <p>
+                <strong>Sub Category:</strong>{" "}
+                {book.subCategory}
+              </p>
 
               {token &&
                 book.createdBy === currentUserId && (
@@ -167,11 +186,22 @@ function Books() {
             </div>
 
             {book.coverImage && (
-              <img
-                src={book.coverImage}
-                alt={book.title}
-                className="book-image"
-              />
+              <div className="book-image-wrapper">
+                {token && (
+                  <button
+                    className="favorite-btn"
+                    onClick={() => addToFavorites(book)}
+                  >
+                    ❤️
+                  </button>
+                )}
+
+                <img
+                  src={book.coverImage}
+                  alt={book.title}
+                  className="book-image"
+                />
+              </div>
             )}
           </div>
         ))

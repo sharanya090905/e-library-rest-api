@@ -11,8 +11,28 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
 
+  publisher: {  
+    type: String,
+    required: true,
+  },
+
+  yearOfPublish: {
+    type: Number,
+    required: true,
+  },
+
   price: {
     type: Number,
+    required: true,
+  },
+
+  pages: {
+    type: Number,
+    required: true,
+  },
+
+  language: {
+    type: String,
     required: true,
   },
 
@@ -21,15 +41,21 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
   
+  subCategory: {
+    type: String,
+    required: true,
+  },
+
   description: {
     type: String,
+    required: true,
   },
 
 
   coverImage: {
     type: String,
-    
-}
+    required: true,
+  }
 
 ,
 

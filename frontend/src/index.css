@@ -447,13 +447,42 @@ button:hover {
 
 /* BOOK IMAGE */
 
+.book-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  gap: 10px;
+}
+
 .book-image {
-  width: 120px;
-  height: 170px;
+  width: 140px;
+  height: 210px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 18px;
   border: 1px solid rgba(65, 111, 56, 0.22);
   background: #eaf7e4;
+}
+
+.favorite-btn {
+  position: static;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 48, 27, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  color: #d33f53;
+  font-size: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(17, 48, 27, 0.12);
+  left:0px;
+}
+
+.favorite-btn:hover {
+  transform: translateY(-1px);
 }
 
 /* PROFILE PAGE */
