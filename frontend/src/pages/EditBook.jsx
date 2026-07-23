@@ -73,11 +73,16 @@ function EditBook() {
         [...formData.entries()]
       );
 
-      const response = await api.put(`/books/${id}`, formData, {
-        headers: {
+      const response = await api.put(
+        `/books/${id}`,
+        formData,
+        {
+          headers: {
           Authorization: `Bearer ${token}`,
-        },
-      });
+         "Content-Type": "multipart/form-data",
+         },
+        }
+      );
 
       console.log("EditBook response", response.data);
 
