@@ -80,7 +80,6 @@ const getBookById = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
-    console.log("HEADERS:", req.headers["content-type"]);
     console.log("BODY:", req.body);
     console.log("FILE:", req.file);
 
@@ -88,35 +87,28 @@ const updateBook = async (req, res) => {
       ...req.body,
     };
 
-    if (req.file) {
-      updateData.coverImage = req.file.path;
-    }
+    console.log("UPDATE DATA:", updateData);
 
-    const updatedBook =
-      await Book.findByIdAndUpdate(
-        req.params.id,
-        updateData,
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-      
-       console.log("UPDATED BOOK:", updatedBook);
+    const updatedBook = await Book.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
-    if (!updatedBook) {
-      return res.status(404).json({
-        success: false,
-        message: "Book not found",
-      });
-    }
+    console.log("UPDATED BOOK:", updatedBook);
 
     res.status(200).json({
       success: true,
       message: "Book updated successfully",
       data: updatedBook,
     });
+
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({
       success: false,
       message: error.message,
