@@ -26,12 +26,7 @@ router.patch(
   upload.single("coverImage"),
   updateBook
 );
-router.put(
-  "/:id",
-  upload.single("coverImage"),
-  authenticate,
-  updateBook
-);
+
 
 router.delete("/:id", authenticate, deleteBook);
 module.exports = router;
