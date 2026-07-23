@@ -146,15 +146,7 @@ function Books() {
               </p>
 
 
-              <p className="mrp">
-                ₹{book.mrp}
-                
-              </p>
-
-              <p className="selling-price">
-                ₹{book.price}
-
-              </p>
+              
 
               <p>
                 <strong>Pages:</strong>{" "}
@@ -174,6 +166,16 @@ function Books() {
               <p>
                 <strong>Sub Category:</strong>{" "}
                 {book.subCategory}
+              </p>
+
+              <p className="mrp">
+                ₹{book.mrp}
+                
+              </p>
+
+              <p className="selling-price">
+                ₹{book.price}
+
               </p>
 
               {token &&
