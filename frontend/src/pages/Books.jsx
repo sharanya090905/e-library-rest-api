@@ -6,6 +6,13 @@ function Books() {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
 
+  const [favorites, setFavorites] = useState(
+    JSON.parse(
+      localStorage.getItem("favorites")
+    ) || []
+  );
+
+
   const token = localStorage.getItem("token");
   const currentUserId =
   localStorage.getItem("userId");
@@ -49,41 +56,43 @@ function Books() {
   };
 
   const addToFavorites = (book) => {
-  const favorites =
-    JSON.parse(
-      localStorage.getItem("favorites")
-    ) || [];
+    const exists = favorites.find(
+      (fav) => fav._id === book._id
+    );
 
-  const exists = favorites.find(
-    (fav) => fav._id === book._id
-  );
-
-  if (exists) {
-    const updatedFavorites =
-      favorites.filter(
+    if (exists) {
+      const updatedFavorites = favorites.filter(
         (fav) => fav._id !== book._id
       );
+
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(updatedFavorites)
+      );
+
+      setFavorites(updatedFavorites);
+      alert("Removed from favorites");
+      return;
+    }
+
+    const updatedFavorites = [...favorites, book];
 
     localStorage.setItem(
       "favorites",
       JSON.stringify(updatedFavorites)
     );
 
-    alert("Removed from favorites");
-    return;
-  }
+    setFavorites(updatedFavorites);
+    alert("Added to favorites");
+  };
 
-  favorites.push(book);
+  const isFavorite = (bookId) => {
+    return favorites.some(
+      (fav) => fav._id === bookId
+    );
+  };
 
-  localStorage.setItem(
-    "favorites",
-    JSON.stringify(favorites)
-  );
-
-  alert("Added to favorites");
-};
-
-const addToCart = (book) => {
+  const addToCart = (book) => {
   const cart =
     JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -222,10 +231,10 @@ const addToCart = (book) => {
               <div className="book-image-wrapper">
                 {token && (
                   <button
-                    className="favorite-btn"
                     onClick={() => addToFavorites(book)}
+                    className="favorite-btn"
                   >
-                    ❤️
+                    {isFavorite(book._id) ? "❤️" : "🤍"}
                   </button>
                 )}
 
