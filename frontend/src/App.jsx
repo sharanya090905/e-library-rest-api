@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddBook from "./pages/AddBook";
 import Favorites from "./pages/Favorites";
+import Cart from "./pages/Cart";
 import EditBook from "./pages/EditBook";
 
 function App() {
@@ -48,6 +49,11 @@ function App() {
         <Route
           path="/favorites"
           element={<Favorites />}
+        />
+
+        <Route
+          path="/cart"
+          element={<Cart />}
         />
 
         <Route

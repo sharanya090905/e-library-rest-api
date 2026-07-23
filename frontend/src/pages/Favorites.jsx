@@ -53,25 +53,7 @@ function Favorites() {
                   {book.author}
                 </p>
 
-                <p>
-                  <strong>Publisher:</strong>{" "}
-                  {book.publisher}
-                </p>
-
-                <p>
-                  <strong>Year:</strong>{" "}
-                  {book.yearOfPublish}
-                </p>
-
-                <p>
-                  <strong>Price:</strong> ₹
-                  {book.price}
-                </p>
-
-                <p>
-                  <strong>Pages:</strong>{" "}
-                  {book.pages}
-                </p>
+   
 
                 <p>
                   <strong>Language:</strong>{" "}
@@ -84,9 +66,11 @@ function Favorites() {
                 </p>
 
                 <p>
-                  <strong>Sub Category:</strong>{" "}
-                  {book.subCategory}
+                  <strong>Price:</strong> ₹
+                  {book.price}
                 </p>
+
+                
 
                 
 

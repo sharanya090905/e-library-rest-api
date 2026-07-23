@@ -67,6 +67,10 @@ function Navbar() {
             <Link to="/favorites">
               Favorites
             </Link>
+
+            <Link to="/cart">
+              Cart
+            </Link>
           </div>
         ) : (
           <>

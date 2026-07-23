@@ -479,11 +479,22 @@ button:hover {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 18px;
+  align-items: center;
 }
 
 .book-actions button,
 .book-actions a button {
   min-width: 100px;
+}
+
+.cart-btn {
+  background: #346831;
+  color: #f7fff4;
+  margin-top: 12px;
+}
+
+.cart-btn:hover {
+  background: #2c5d28;
 }
 
 /* BOOK IMAGE */

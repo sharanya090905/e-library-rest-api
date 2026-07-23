@@ -83,6 +83,24 @@ function Books() {
   alert("Added to favorites");
 };
 
+const addToCart = (book) => {
+  const cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  const exists = cart.find(
+    (item) => item._id === book._id
+  );
+
+  if (exists) {
+    alert("Already in cart");
+    return;
+  }
+
+  cart.push(book);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to cart");
+};
+
   return (
     <div className="content">
     <div className="container">
@@ -124,7 +142,7 @@ function Books() {
             <div className="book-details">
               
 
-              <h3>{book.title}</h3>
+              <h2>{book.title}</h2>
 
               <p className="book-description">
                  {book.description}
@@ -216,6 +234,15 @@ function Books() {
                   alt={book.title}
                   className="book-image"
                 />
+
+                {token && (
+                  <button
+                    className="cart-btn"
+                    onClick={() => addToCart(book)}
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </div>
             )}
           </div>
