@@ -80,14 +80,10 @@ const getBookById = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
-    console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
-
     const updateData = {
       ...req.body,
     };
 
-    console.log("UPDATE DATA:", updateData);
 
     const updatedBook = await Book.findByIdAndUpdate(
       req.params.id,
@@ -98,7 +94,7 @@ const updateBook = async (req, res) => {
       }
     );
 
-    console.log("UPDATED BOOK:", updatedBook);
+    
 
     res.status(200).json({
       success: true,
