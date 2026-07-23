@@ -80,21 +80,25 @@ const getBookById = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
+    console.log("updateBook req.body", req.body);
+    console.log("updateBook req.file", req.file);
+
     const updateData = {
       ...req.body,
     };
 
+    if (req.file) {
+      updateData.coverImage = req.file.path;
+    }
 
     const updatedBook = await Book.findByIdAndUpdate(
       req.params.id,
       updateData,
       {
-        new: true,
+        returnDocument: "after",
         runValidators: true,
       }
     );
-
-    
 
     res.status(200).json({
       success: true,
