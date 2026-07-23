@@ -80,6 +80,10 @@ const getBookById = async (req, res) => {
 
 const updateBook = async (req, res) => {
   try {
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file);
+    console.log("ID:", req.params.id);
+
     const updateData = {
       ...req.body,
     };

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
+
+
 function EditBook() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -66,14 +68,28 @@ function EditBook() {
         formData.append("coverImage", coverImage);
       }
 
+      console.log(
+        "EditBook sending formData",
+        [...formData.entries()]
+      );
+
       const response = await api.put(`/books/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
+      console.log("EditBook response", response.data);
+
+      if (!response.data || !response.data.success) {
+        throw new Error(
+          response.data?.message ||
+            "Update failed on server"
+        );
+      }
+
       // If backend returns updated book, update preview
-      if (response && response.data && response.data.data) {
+      if (response.data.data) {
         const updated = response.data.data;
         if (updated.coverImage) setExistingCover(updated.coverImage);
       }
