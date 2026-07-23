@@ -20,11 +20,18 @@ router.post(
 );
 router.get("/", getAllBooks);
 router.get("/:id", getBookById);
+router.patch(
+  "/:id",
+  authenticate,
+  upload.single("coverImage"),
+  updateBook
+);
 router.put(
   "/:id",
   upload.single("coverImage"),
   authenticate,
   updateBook
 );
+
 router.delete("/:id", authenticate, deleteBook);
 module.exports = router;
