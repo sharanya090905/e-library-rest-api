@@ -12,6 +12,7 @@ function EditBook() {
   const [author, setAuthor] = useState("");
   const [publisher, setPublisher] = useState("");
   const [yearOfPublish, setYearOfPublish] = useState("");
+  const [mrp, setMrp] = useState("");
   const [price, setPrice] = useState("");
   const [pages, setPages] = useState("");
   const [language, setLanguage] = useState("");
@@ -34,6 +35,7 @@ function EditBook() {
         setYearOfPublish(book.yearOfPublish || "");
         setPages(book.pages || "");
         setLanguage(book.language || "");
+        setMrp(book.mrp || "");
         setPrice(book.price);
         setSubCategory(book.subCategory || "");
         setCategory(book.category);
@@ -58,6 +60,7 @@ function EditBook() {
       formData.append("author", author);
       formData.append("publisher", publisher);
       formData.append("yearOfPublish", yearOfPublish);
+      formData.append("mrp", mrp);
       formData.append("price", price);
       formData.append("pages", pages);
       formData.append("language", language);
@@ -160,7 +163,17 @@ function EditBook() {
 
         <input
           type="number"
-          placeholder="Price"
+          placeholder="MRP"
+          value={mrp}
+          onChange={(e) => setMrp(e.target.value)}
+        />
+
+         <br />
+         <br />
+
+        <input
+          type="number"
+          placeholder="Selling Price"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />

@@ -11,6 +11,24 @@ body {
   min-height: 100vh;
 }
 
+.mrp {
+  color: red;
+  text-decoration: line-through;
+  margin-bottom: 5px;
+}
+
+.selling-price {
+  color: #22c55e;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.book-description {
+  color: #cbd5e1;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
 button,
 input,
 textarea,
@@ -265,6 +283,29 @@ form {
 /* slightly smaller add form container */
 .add-form-container {
   max-width: 600px;
+}
+
+.row-fields {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.half-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.row-fields input.half-input,
+.row-fields textarea.half-input {
+  height: 54px;
+  min-height: 54px;
+}
+
+.row-fields textarea.half-input {
+  resize: none;
 }
 
 .form-card,

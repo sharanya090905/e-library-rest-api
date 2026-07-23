@@ -21,6 +21,11 @@ const bookSchema = new mongoose.Schema({
     required: true,
   },
 
+  mrp: {
+    type: Number,
+    required: true,
+  },
+
   price: {
     type: Number,
     required: true,

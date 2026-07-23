@@ -19,7 +19,7 @@ function Books() {
         const response = await api.get(`/books?search=${search}`);
 
         console.log("Books fetched:",response.data.data);
-        
+
         setBooks(response.data.data);
       } catch (error) {
         console.log(error);
@@ -122,7 +122,13 @@ function Books() {
           >
 
             <div className="book-details">
+              
+
               <h3>{book.title}</h3>
+
+              <p className="book-description">
+                 {book.description}
+              </p>
 
               <p>
                 <strong>Author:</strong>{" "}
@@ -140,9 +146,14 @@ function Books() {
               </p>
 
 
-              <p>
-                <strong>Price:</strong> ₹
-                {book.price}
+              <p className="mrp">
+                ₹{book.mrp}
+                
+              </p>
+
+              <p className="selling-price">
+                ₹{book.price}
+
               </p>
 
               <p>

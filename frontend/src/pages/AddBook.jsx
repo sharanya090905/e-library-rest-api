@@ -4,7 +4,9 @@ import api from "../services/api";
 
 function AddBook() {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
+  const [mrp, setMrp] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [coverImage, setCoverImage] = useState(null);
@@ -24,9 +26,11 @@ function AddBook() {
     const formData = new FormData();
 
     formData.append("title", title);
+    formData.append("description", description);
     formData.append("author", author);
     formData.append("publisher",publisher);
     formData.append("yearOfPublish",yearOfPublish);
+    formData.append("mrp", mrp)
     formData.append("price", price);
     formData.append("pages",pages);
     formData.append("language",language);
@@ -68,14 +72,23 @@ function AddBook() {
         <h2>Add Book</h2>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) =>
-              setTitle(e.target.value)
-            }
-          />
+          <div className="row-fields">
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="half-input"
+            />
+
+            <textarea
+              placeholder="Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="half-input"
+              rows={4}
+            />
+          </div>
 
           <br />
           <br />
@@ -115,10 +128,22 @@ function AddBook() {
 
            <br />
            <br />
+ 
+          <input
+            type="number"
+            placeholder="MRP"
+            value={mrp}
+            onChange={(e) =>
+              setMrp(e.target.value)
+            }
+          />
+
+          <br />
+          <br />
 
           <input
             type="number"
-            placeholder="Price"
+            placeholder="Selling Price"
             value={price}
             onChange={(e) =>
               setPrice(e.target.value)
@@ -140,39 +165,81 @@ function AddBook() {
           <br />
           <br />
 
-          <input
-            type="text"
-            placeholder="Language"
+          <select
             value={language}
             onChange={(e) =>
               setLanguage(e.target.value)
             }
-          />
+          >
+            <option value="">
+              Select Language
+            </option>
+            <option value="English">
+              English
+            </option>
+            <option value="Hindi">
+              Hindi
+            </option>
+            <option value="Bengali">
+              Bengali
+            </option>
+            <option value="Spanish">
+              Spanish
+            </option>
+            </select>
 
           <br />
           <br />
 
-
-          <input
-            type="text"
-            placeholder="Category"
+          <select
             value={category}
             onChange={(e) =>
               setCategory(e.target.value)
             }
-          />
+          >
+            <option value="">
+              Select Category
+            </option>
+            <option value="Guide">
+              Guide
+            </option>
+            <option value="Business">
+              Business
+            </option>
+            <option value="Science">
+              Science
+            </option>
+            <option value="Story">
+              Story
+            </option>
+            </select>
+          
 
           <br />
           <br />
 
-          <input
-            type="text"
-            placeholder="Sub Category"
+          <select
             value={subCategory}
             onChange={(e) =>
               setSubCategory(e.target.value)
             }
-          />
+          >
+            <option value="">
+              Select Sub Category
+            </option>
+            <option value="Programming">
+              Programming
+            </option>
+            <option value="Productivity">
+              Productivity
+            </option>
+            <option value="Fiction">
+              Fiction
+            </option>
+            <option value="Biography">
+              Biography
+            </option>
+            </select>
 
           <br />
           <br />
