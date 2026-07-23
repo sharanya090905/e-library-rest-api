@@ -18,6 +18,8 @@ function Books() {
       try {
         const response = await api.get(`/books?search=${search}`);
 
+        console.log("Books fetched:",response.data.data);
+        
         setBooks(response.data.data);
       } catch (error) {
         console.log(error);
