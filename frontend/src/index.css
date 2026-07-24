@@ -667,3 +667,35 @@ button:hover {
   font-weight: 700;
   text-decoration: none;
 }
+
+
+/*ADD TO CART QUANTITY*/
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}

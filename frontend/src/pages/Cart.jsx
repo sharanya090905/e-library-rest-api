@@ -2,8 +2,14 @@ import { useState } from "react";
 
 function Cart() {
   const [cartItems, setCartItems] = useState(() => {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-  });
+  const items =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+  return items.map((item) => ({
+    ...item,
+    quantity: item.quantity || 1,
+  }));
+});
 
   const removeFromCart = (id) => {
     const updatedCart = cartItems.filter(
@@ -12,6 +18,47 @@ function Cart() {
     setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
+
+  const increaseQuantity = (id) => {
+    const updatedCart = cartItems.map((item) =>
+      item._id === id
+        ? {
+          ...item,
+          quantity: item.quantity + 1,
+          }
+        : item
+    );
+
+   setCartItems(updatedCart);
+
+   localStorage.setItem(
+     "cart",
+     JSON.stringify(updatedCart)
+   );
+ };
+
+ const decreaseQuantity = (id) => {
+   const updatedCart = cartItems.map((item) =>
+     item._id === id
+       ? {
+          ...item,
+          quantity: Math.max(
+            item.quantity - 1,
+            1
+          ),
+         }
+       : item
+    );
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
+ };
+
+
 
   return (
     <div className="content">
@@ -32,20 +79,43 @@ function Cart() {
                 <p>
                   <strong>Category:</strong> {book.category}
                 </p>
-                <p>
-                  <strong>Language:</strong> {book.language}
-                </p>
+                
 
                 <p>
                   <strong>Price:</strong> ₹{book.price}
                 </p>
 
-                <button
-                  className="delete-btn"
-                  onClick={() => removeFromCart(book._id)}
-                >
-                  Remove
-                </button>
+                <div className="cart-actions">
+                  <div className="quantity-controls">
+                    <button
+                      onClick={() =>
+                        decreaseQuantity(book._id)
+                      }
+                    >
+                      -
+                    </button>
+
+                    <span>{book.quantity}</span>
+
+                    <button
+                      onClick={() =>
+                        increaseQuantity(book._id)
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <button
+                    className="delete-btn"
+                    onClick={() =>
+                      removeFromCart(book._id)
+                    }
+                  >
+                    Remove
+                  </button>
+                </div>
+
               </div>
               {book.coverImage && (
                 <img
