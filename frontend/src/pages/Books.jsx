@@ -4,6 +4,7 @@ import api from "../services/api";
 
 function Books() {
   const [books, setBooks] = useState([]);
+  const [expandedBook, setExpandedBook] = useState(null);
   const [search, setSearch] = useState("");
 
   const [favorites, setFavorites] = useState(
@@ -109,6 +110,12 @@ function Books() {
   localStorage.setItem("cart", JSON.stringify(cart));
   alert("Added to cart");
 };
+  
+  const toggleDetails = (id) => {
+    setExpandedBook(
+      expandedBook === id ? null : id
+    );
+  };
 
   return (
     <div className="content">
@@ -141,12 +148,40 @@ function Books() {
       {books.length === 0 ? (
         <p>No books found</p>
       ) : (
-        books.map((book) => (
-            
-          <div
-            key={book._id}
-            className="book-card"
-          >
+        <div className="books-grid">
+          {books.map((book) => (
+            <div
+              key={book._id}
+              className="book-card"
+              onClick={() => toggleDetails(book._id)}
+            >
+            {book.coverImage && (
+              <div className="book-image-wrapper">
+                {token && (
+                  <button
+                    onClick={() => addToFavorites(book)}
+                    className="favorite-btn"
+                  >
+                    {isFavorite(book._id) ? "❤️" : "🤍"}
+                  </button>
+                )}
+
+                <img
+                  src={book.coverImage}
+                  alt={book.title}
+                  className="book-image"
+                />
+
+                {token && (
+                  <button
+                    className="cart-btn"
+                    onClick={() => addToCart(book)}
+                  >
+                    Add to Cart
+                  </button>
+                )}
+              </div>
+            )}
 
             <div className="book-details">
               
@@ -162,39 +197,6 @@ function Books() {
                 {book.author}
               </p>
 
-              <p>
-                <strong>Publisher:</strong>{" "}
-                {book.publisher}
-              </p>
-
-              <p>
-                <strong>Year:</strong>{" "}
-                {book.yearOfPublish}
-              </p>
-
-
-              
-
-              <p>
-                <strong>Pages:</strong>{" "}
-                {book.pages}
-              </p>
-
-              <p>
-                <strong>Language:</strong>{" "}
-                {book.language}
-              </p>
-
-              <p>
-                <strong>Category:</strong>{" "}
-                {book.category}
-              </p>
-
-              <p>
-                <strong>Sub Category:</strong>{" "}
-                {book.subCategory}
-              </p>
-
               <p className="mrp">
                 ₹{book.mrp}
                 
@@ -204,6 +206,32 @@ function Books() {
                 ₹{book.price}
 
               </p>
+
+              
+
+
+              {expandedBook === book._id && (
+                <>
+                  <p><strong>Publisher:</strong> {book.publisher}</p>
+
+                  <p><strong>Language:</strong> {book.language}</p>
+
+                  <p><strong>Pages:</strong> {book.pages}</p>
+
+                  <p><strong>Year:</strong> {book.yearOfPublish}</p>
+
+                  <p><strong>Category:</strong> {book.category}</p>
+
+                  <p><strong>Sub Category:</strong> {book.subCategory}</p>
+
+                  <p><strong>Description:</strong> {book.description}</p>
+                </>
+              )}
+
+
+              
+
+              
 
               {token &&
                 book.createdBy === currentUserId && (
@@ -227,36 +255,10 @@ function Books() {
 
             </div>
 
-            {book.coverImage && (
-              <div className="book-image-wrapper">
-                {token && (
-                  <button
-                    onClick={() => addToFavorites(book)}
-                    className="favorite-btn"
-                  >
-                    {isFavorite(book._id) ? "❤️" : "🤍"}
-                  </button>
-                )}
-                    
-                <img
-                  src={book.coverImage}
-                  alt={book.title}
-                  className="book-image"
-                />
-
-                {token && (
-                  <button
-                    className="cart-btn"
-                    onClick={() => addToCart(book)}
-                  >
-                    Add to Cart
-                  </button>
-                )}
-              </div>
-            )}
           </div>
-        ))
-        )}
+        ))}
+        </div>
+      )}
       </div>
       </div>
   );

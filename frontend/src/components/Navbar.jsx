@@ -87,7 +87,7 @@ function Navbar() {
                 alt="E-Library logo"
                 className="header-logo"
               />
-              <span>E-Library</span>
+              
             </div>
 
             <div className="nav-right">
