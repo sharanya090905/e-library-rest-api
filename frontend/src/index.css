@@ -404,6 +404,8 @@ button:hover {
 
 .delete-btn {
   background: #d44b4b;
+  min-width: 100px;
+  padding: 12px 18px;
 }
 
 .delete-btn:hover {
@@ -471,7 +473,7 @@ button:hover {
 
 .book-card {
   background: rgba(242, 255, 236, 0.95);
-  padding: 18px;
+  padding: 14px;
   margin-top: 10px;
   border-radius: 18px;
   border: 1px solid rgba(82, 121, 66, 0.18);
@@ -479,7 +481,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px;
+  gap: 16px;
 }
 
 .book-details {
@@ -488,11 +490,11 @@ button:hover {
 
 .book-card h3 {
   color: #1f441d;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .book-card p {
-  margin: 10px 0;
+  margin: 6px 0;
   color: #304c2e;
 }
 
@@ -504,7 +506,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 12px;
   align-items: center;
 }
 
@@ -529,13 +531,13 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 140px;
-  gap: 10px;
+  width: 120px;
+  gap: 8px;
 }
 
 .book-image {
   width: 140px;
-  height: 210px;
+  height: 220px;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(65, 111, 56, 0.22);
@@ -544,8 +546,8 @@ button:hover {
 
 .favorite-btn {
   position: static;
-  width: 38px;
-  height: 38px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 1px solid rgba(17, 48, 27, 0.2);
   background: rgba(255, 255, 255, 0.95);
@@ -698,4 +700,66 @@ button:hover {
   align-items: center;
   justify-content: center;
   padding: 0;
+}
+
+.billing-card {
+  background: #ffffff;
+  border: 1px solid #d9e6d0;
+  border-radius: 16px;
+  padding: 26px;
+  margin: 24px auto 0;
+  box-shadow: 0 8px 24px rgba(47, 93, 34, 0.08);
+  max-width: 520px;
+  width: 100%;
+}
+
+.billing-card h3 {
+  margin: 0 0 16px;
+  color: #2f5d22;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #385c2c;
+  font-size: 15px;
+}
+
+.bill-row.total-row {
+  font-weight: 700;
+  font-size: 17px;
+  color: #1f3a14;
+}
+
+.billing-card hr {
+  border: none;
+  border-top: 1px solid #d9e6d0;
+  margin: 14px 0;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  background: #2f5d22;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  background: #234518;
+}
+
+.remove-favorite-btn {
+  width: fit-content !important;
+  display: inline-block !important;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }

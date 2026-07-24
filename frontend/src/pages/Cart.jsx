@@ -57,8 +57,19 @@ function Cart() {
       JSON.stringify(updatedCart)
     );
  };
+ 
+ const subtotal = cartItems.reduce(
+   (total, item) =>
+     total + item.price * item.quantity,
+   0
+ );
 
+ const discount = subtotal * 0.1;
 
+ const gst = (subtotal - discount) * 0.18;
+
+ const totalAmount =
+  subtotal - discount + gst;
 
   return (
     <div className="content">
@@ -68,68 +79,102 @@ function Cart() {
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          cartItems.map((book) => (
-            <div key={book._id} className="book-card">
-              <div className="book-details">
-                <h3>{book.title}</h3>
-                <p>
-                  <strong>Author:</strong> {book.author}
-                </p>
-                
-                <p>
-                  <strong>Category:</strong> {book.category}
-                </p>
-                
+          <>
+            {cartItems.map((book) => (
+              <div key={book._id} className="book-card">
+                <div className="book-details">
+                  <h3>{book.title}</h3>
+                  <p>
+                    <strong>Author:</strong> {book.author}
+                  </p>
 
-                <p>
-                  <strong>Price:</strong> ₹{book.price}
-                </p>
+                  <p>
+                    <strong>Category:</strong> {book.category}
+                  </p>
 
-                <div className="cart-actions">
-                  <div className="quantity-controls">
+                  <p>
+                    <strong>Price:</strong> ₹{book.price}
+                  </p>
+
+                  <div className="cart-actions">
+                    <div className="quantity-controls">
+                      <button
+                        onClick={() =>
+                          decreaseQuantity(book._id)
+                        }
+                      >
+                        -
+                      </button>
+
+                      <span>{book.quantity}</span>
+
+                      <button
+                        onClick={() =>
+                          increaseQuantity(book._id)
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+
                     <button
+                      className="delete-btn"
                       onClick={() =>
-                        decreaseQuantity(book._id)
+                        removeFromCart(book._id)
                       }
                     >
-                      -
-                    </button>
-
-                    <span>{book.quantity}</span>
-
-                    <button
-                      onClick={() =>
-                        increaseQuantity(book._id)
-                      }
-                    >
-                      +
+                      Remove
                     </button>
                   </div>
-
-                  <button
-                    className="delete-btn"
-                    onClick={() =>
-                      removeFromCart(book._id)
-                    }
-                  >
-                    Remove
-                  </button>
                 </div>
 
+                {book.coverImage && (
+                  <img
+                    src={book.coverImage}
+                    alt={book.title}
+                    className="book-image"
+                  />
+                )}
               </div>
-              {book.coverImage && (
-                <img
-                  src={book.coverImage}
-                  alt={book.title}
-                  className="book-image"
-                />
-              )}
+            ))}
+
+            <div className="billing-card">
+              <h3>Price Details</h3>
+
+              <div className="bill-row">
+                <span>Subtotal</span>
+                <span>₹{subtotal.toFixed(2)}</span>
+              </div>
+
+              <div className="bill-row">
+                <span>Discount (10%)</span>
+                <span>-₹{discount.toFixed(2)}</span>
+              </div>
+
+              <div className="bill-row">
+                <span>GST (18%)</span>
+                <span>₹{gst.toFixed(2)}</span>
+              </div>
+
+              <hr />
+
+              <div className="bill-row total-row">
+                <span>Total Amount</span>
+                <span>₹{totalAmount.toFixed(2)}</span>
+              </div>
+
+              <button className="checkout-btn">
+                Proceed to Checkout
+              </button>
             </div>
-          ))
+          </>
         )}
       </div>
     </div>
   );
+
+  
+
 }
 
 export default Cart;

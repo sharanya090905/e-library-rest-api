@@ -11,24 +11,11 @@ function Favorites() {
     }
   }, [navigate, token]);
 
-  const [favorites, setFavorites] = useState(
+  const [favorites] = useState(
     JSON.parse(
       localStorage.getItem("favorites")
     ) || []
   );
-
-  const removeFromFavorites = (id) => {
-    const updatedFavorites = favorites.filter(
-      (book) => book._id !== id
-    );
-
-    setFavorites(updatedFavorites);
-
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify(updatedFavorites)
-    );
-  };
 
   return (
     <div className="content">
@@ -53,7 +40,15 @@ function Favorites() {
                   {book.author}
                 </p>
 
-   
+                 <p>
+                <strong>Publisher:</strong>{" "}
+                {book.publisher}
+              </p>
+
+              <p>
+                <strong>Year:</strong>{" "}
+                {book.yearOfPublish}
+              </p>
 
                 <p>
                   <strong>Language:</strong>{" "}
@@ -74,14 +69,6 @@ function Favorites() {
 
                 
 
-                <button
-                  className="delete-btn"
-                  onClick={() =>
-                    removeFromFavorites(book._id)
-                  }
-                >
-                  Remove
-                </button>
               </div>
 
                {book.coverImage && (

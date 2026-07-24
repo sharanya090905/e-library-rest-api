@@ -237,7 +237,7 @@ function Books() {
                     {isFavorite(book._id) ? "❤️" : "🤍"}
                   </button>
                 )}
-
+                    
                 <img
                   src={book.coverImage}
                   alt={book.title}
