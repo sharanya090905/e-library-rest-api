@@ -66,11 +66,25 @@ select {
   z-index: 1000;
 }
 
+.header-title-wrapper,
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .header-title {
   color: white;
   font-size: 24px;
   font-weight: bold;
   left: 20px;
+}
+
+.header-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
 /* SIDEBAR */
