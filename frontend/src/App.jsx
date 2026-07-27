@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import AddBook from "./pages/AddBook";
 import Favorites from "./pages/Favorites";
 import Cart from "./pages/Cart";
+import MyBooks from "./pages/MyBooks";
 import EditBook from "./pages/EditBook";
 
 function App() {
@@ -54,6 +55,11 @@ function App() {
         <Route
           path="/cart"
           element={<Cart />}
+        />
+
+        <Route
+          path="/my-books"
+          element={<MyBooks />}
         />
 
         <Route

@@ -1,8 +1,14 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const token = localStorage.getItem("token");
 
@@ -78,6 +84,11 @@ function Navbar() {
             <Link to="/cart">
               Cart
             </Link>
+
+            <Link to="/my-books">
+              My Books
+            </Link>
+
           </div>
         ) : (
           <>
@@ -91,12 +102,14 @@ function Navbar() {
             </div>
 
             <div className="nav-right">
-              <Link
-                to="/login"
-                className="login-top-btn"
-              >
-                Login
-              </Link>
+              {location.pathname !== "/login" && (
+                <Link
+                  to="/login"
+                  className="login-top-btn"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </>
         )}

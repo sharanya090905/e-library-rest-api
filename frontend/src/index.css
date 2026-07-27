@@ -805,3 +805,28 @@ button:hover {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/*MY BOOKS*/
+
+.book-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-btn {
+  background-color: #2f5d22;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+}
