@@ -66,10 +66,20 @@ function Cart() {
 
  const discount = subtotal * 0.1;
 
- const gst = (subtotal - discount) * 0.18;
+ const deliveryCharges = 50;
+
+ const cgst =
+   (subtotal - discount) * 0.09;
+
+ const sgst =
+   (subtotal - discount) * 0.09;
 
  const totalAmount =
-  subtotal - discount + gst;
+  subtotal -
+  discount +
+  cgst +
+  sgst +
+  deliveryCharges;
 
   return (
     <div className="content">
@@ -152,8 +162,18 @@ function Cart() {
               </div>
 
               <div className="bill-row">
-                <span>GST (18%)</span>
-                <span>₹{gst.toFixed(2)}</span>
+                <span>CGST (9%)</span>
+                <span>₹{cgst.toFixed(2)}</span>
+              </div>
+
+              <div className="bill-row">
+                <span>SGST (9%)</span>
+                <span>₹{sgst.toFixed(2)}</span>
+              </div>
+
+              <div className="bill-row">
+                <span>Delivery Charges</span>
+                <span>₹{deliveryCharges}</span>
               </div>
 
               <hr />
