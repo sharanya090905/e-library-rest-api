@@ -13,6 +13,13 @@ function Books() {
     ) || []
   );
 
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(
+      localStorage.getItem("cart")
+    ) || []
+  );
+  ``
+
 
   const token = localStorage.getItem("token");
   const currentUserId =
@@ -93,27 +100,91 @@ function Books() {
     );
   };
 
+  const isInCart = (bookId) => {
+    const cart =
+      JSON.parse(
+        localStorage.getItem("cart")
+      ) || [];
+
+    return cart.find(
+      (item) => item._id === bookId
+    );
+  };
+
   const addToCart = (book) => {
-  const cart =
-    JSON.parse(localStorage.getItem("cart")) || [];
+    const cart =
+      JSON.parse(localStorage.getItem("cart")) || [];
 
-  const exists = cart.find(
-    (item) => item._id === book._id
-  );
+    const exists = cart.find(
+      (item) => item._id === book._id
+    );
 
-  if (exists) {
-    alert("Already in cart");
-    return;
-  }
+    if (exists) {
+      return;
+    }
 
-  cart.push(book);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart");
-};
+    const cartBook = {
+      ...book,
+      quantity: 1,
+    };
+
+    const updatedCart = [
+      ...cartItems,
+      cartBook,
+    ];
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
+  };
   
   const toggleDetails = (id) => {
     setExpandedBook(
       expandedBook === id ? null : id
+    );
+  };
+
+  const increaseQuantity = (bookId) => {
+    const updatedCart = cartItems.map((item) =>
+      item._id === bookId
+        ? {
+          ...item,
+            quantity: (item.quantity || 1) + 1,
+          }
+        : item
+    );
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
+    );
+  };
+
+  const decreaseQuantity = (bookId) => {
+    const updatedCart = cartItems
+      .map((item) =>
+        item._id === bookId
+          ? {
+              ...item,
+              quantity: Math.max(
+                (item.quantity || 1) - 1,
+                0
+              ),
+            }
+          : item
+      )
+      .filter((item) => item.quantity > 0);
+
+    setCartItems(updatedCart);
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(updatedCart)
     );
   };
 
@@ -172,14 +243,44 @@ function Books() {
                   className="book-image"
                 />
 
-                {token && (
-                  <button
-                    className="cart-btn"
-                    onClick={() => addToCart(book)}
-                  >
-                    Add to Cart
-                  </button>
-                )}
+                {token &&
+                  (isInCart(book._id) ? (
+                    <div className="quantity-controls">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          decreaseQuantity(book._id);
+                        }}
+                      >
+                        -
+                      </button>
+
+                      <span>
+                        {cartItems.find(
+                          (item) => item._id === book._id
+                        )?.quantity || 1}
+                      </span>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          increaseQuantity(book._id);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      className="cart-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(book);
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  ))}
               </div>
             )}
 
