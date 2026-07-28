@@ -11,6 +11,7 @@ import Favorites from "./pages/Favorites";
 import Cart from "./pages/Cart";
 import MyBooks from "./pages/MyBooks";
 import EditBook from "./pages/EditBook";
+import BookDetails from "./pages/BookDetails";
 
 function App() {
   return (
@@ -22,6 +23,12 @@ function App() {
           path="/"
           element={<Books />}
         />
+
+        <Route
+          path="/book/:id"
+          element={<BookDetails />}
+        />
+
         <Route
           path="/notifications"
           element={<Notifications />}

@@ -5,7 +5,7 @@ import api from "../services/api";
 function Books() {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
-  const [expandedBook, setExpandedBook] = useState(null);
+
   const [search, setSearch] = useState("");
   
   const [selectedCategory, setSelectedCategory] =
@@ -149,11 +149,7 @@ function Books() {
     );
   };
   
-  const toggleDetails = (id) => {
-    setExpandedBook(
-      expandedBook === id ? null : id
-    );
-  };
+  
 
   const increaseQuantity = (bookId) => {
     const updatedCart = cartItems.map((item) =>
@@ -289,7 +285,7 @@ function Books() {
             <div
               key={book._id}
               className="book-card"
-              onClick={() => toggleDetails(book._id)}
+              onClick={() => navigate(`/book/${book._id}`)}
             >
             {book.coverImage && (
               <div className="book-image-wrapper">
@@ -401,33 +397,7 @@ function Books() {
               </div>
               
 
-              
-
-
-              {expandedBook === book._id && (
-                <>
-                  <p><strong>Publisher:</strong> {book.publisher}</p>
-
-                  <p><strong>Language:</strong> {book.language}</p>
-
-                  <p><strong>Pages:</strong> {book.pages}</p>
-
-                  <p><strong>Year:</strong> {book.yearOfPublish}</p>
-
-                  <p><strong>Category:</strong> {book.category}</p>
-
-                  <p><strong>Sub Category:</strong> {book.subCategory}</p>
-
-                  <p><strong>Description:</strong> {book.description}</p>
-                </>
-              )}
-
-
-              
-
-              
-
-              {token &&
+               {token &&
                 book.createdBy === currentUserId && (
                   <div className="book-actions">
                     <Link

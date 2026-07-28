@@ -882,6 +882,53 @@ button:hover {
   font-weight: bold;
 }
 
+/* BOOK DETAILS PAGE */
+
+.book-details-page {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: rgba(242, 255, 236, 0.95);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 20px rgba(46, 81, 34, 0.12);
+  margin-top: 30px;
+}
+
+.book-details-image-wrapper {
+  flex-shrink: 0;
+}
+
+.book-details-image {
+  width: 280px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.book-details-info {
+  flex: 1;
+  text-align: left;
+}
+
+.book-details-info h1 {
+  font-size: 32px;
+  color: #1f441d;
+  margin-bottom: 20px;
+}
+
+.book-details-info p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #304c2e;
+}
+
+.book-details-info strong {
+  color: #1f441d;
+}
+
+
 @media (max-width: 768px) {
 
   .navbar.sidebar {
@@ -952,3 +999,23 @@ button:hover {
 
 }
 
+@media (max-width: 768px) {
+  .book-details-page {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .book-details-image-wrapper {
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-details-image {
+    width: 220px;
+    height: auto;
+  }
+
+  .book-details-info h1 {
+    font-size: 24px;
+  }
+}
