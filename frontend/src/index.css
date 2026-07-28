@@ -922,14 +922,26 @@ button:hover {
 
 @media (max-width: 768px) {
   .book-card {
-    grid-template-columns: 1fr;
-    padding-right: 12px;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
   }
 
-  .book-details {
-    padding-right: 0;
+  .book-image {
+    width: 100px;
+    height: auto;
+  }
+
+  .book-details h2 {
+    font-size: 18px;
+  }
+
+  .book-details p {
+    font-size: 14px;
   }
 }
+
+
+
 
 @media (max-width: 768px) {
   .top-header {
