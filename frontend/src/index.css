@@ -928,7 +928,7 @@ button:hover {
   .book-details {
     width: 100%;
   }
-}
+
 
   .book-image {
     width: 100px;
@@ -940,6 +940,7 @@ button:hover {
   .book-details p {
     font-size: 14px;
   }
+}
 
 
 
