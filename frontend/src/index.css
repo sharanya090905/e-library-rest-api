@@ -24,15 +24,15 @@ body {
 }
 
 .mrp {
-  color: red;
+  color: #ef4444;
   text-decoration: line-through;
-  margin-bottom: 5px;
 }
 
-.selling-price {
-  color: #22c55e;
-  font-size: 18px;
-  font-weight: bold;
+.price-section {
+  color: #385c2c;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .book-description {
@@ -492,6 +492,7 @@ button:hover {
 .book-card {
   background: rgba(242, 255, 236, 0.95);
   padding: 12px;
+  padding-right: 35px;
   margin-top: 0;
   border-radius: 16px;
   border: 1px solid rgba(82, 121, 66, 0.18);
@@ -501,12 +502,14 @@ button:hover {
   align-items: start;
   gap: 10px;
 
+  position: relative;
+
 }
 
 .book-details {
   min-width: 0;
+  padding-right: 50px;
 }
-
 .book-card h2,
 .book-card h3 {
   color: #1f441d;
@@ -561,7 +564,7 @@ button:hover {
   width: 100%;
   gap: 8px;
   justify-self: end;
-  padding-right: 70px;
+  padding-right: 45px;
 }
 
 .book-image {
@@ -575,7 +578,9 @@ button:hover {
 }
 
 .favorite-btn {
-  position: static;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -588,7 +593,7 @@ button:hover {
   align-items: center;
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(17, 48, 27, 0.12);
-  left:0px;
+  
 }
 
 .favorite-btn:hover {

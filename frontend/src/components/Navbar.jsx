@@ -111,14 +111,14 @@ function Navbar() {
           </div>
         ) : (
           <>
-            <div className="topbar-brand">
+            <Link to="/" className="topbar-brand">
               <img
                 src="/EBookLogo.png"
                 alt="E-Library logo"
                 className="header-logo"
               />
-              
-            </div>
+            </Link>
+             
 
             <div className="nav-right">
               {location.pathname !== "/login" && (

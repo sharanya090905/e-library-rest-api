@@ -390,15 +390,16 @@ function Books() {
                 {book.author}
               </p>
 
-              <p className="mrp">
-                ₹{book.mrp}
-                
-              </p>
+              <div className="price-section">
+                <span className="mrp">
+                  ₹{book.mrp}
+                </span>
 
-              <p className="selling-price">
-                ₹{book.price}
-
-              </p>
+                <span className="selling-price">
+                  ₹{book.price}
+                </span>
+              </div>
+              
 
               
 
