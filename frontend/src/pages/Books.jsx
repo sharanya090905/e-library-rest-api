@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../services/api";
 
 function Books() {
+  const navigate = useNavigate();
   const [books, setBooks] = useState([]);
   const [expandedBook, setExpandedBook] = useState(null);
   const [search, setSearch] = useState("");
+  
+  const [selectedCategory, setSelectedCategory] =
+    useState("");
+
+  const [showFilter, setShowFilter] =
+  useState(false);
+
 
   const [favorites, setFavorites] = useState(
     JSON.parse(
@@ -13,13 +21,13 @@ function Books() {
     ) || []
   );
 
+  
+
   const [cartItems, setCartItems] = useState(
     JSON.parse(
       localStorage.getItem("cart")
     ) || []
   );
-  ``
-
 
   const token = localStorage.getItem("token");
   const currentUserId =
@@ -188,6 +196,18 @@ function Books() {
     );
   };
 
+  const filteredBooks = books.filter((book) => {
+    if (!selectedCategory) {
+      return true;
+    }
+
+    return (
+     book.category?.trim().toLowerCase() ===
+     selectedCategory.trim().toLowerCase()
+    );
+  });
+
+
   return (
     <div className="content">
     <div className="container">
@@ -196,15 +216,26 @@ function Books() {
       </h2>
 
       <div className="search-row">
+        <span
+           className="filter-icon"
+           onClick={() =>
+             setShowFilter(!showFilter)
+           }
+        >
+          ☰
+        </span>
+
         <input
           type="text"
           className="search-input"
           placeholder="Search books..."
           value={search}
           onChange={(e) =>
-            setSearch(e.target.value)
+            setSearch(e.target.value)   
           }
         />
+
+        
 
         {token && (
           <Link
@@ -216,11 +247,45 @@ function Books() {
         )}
       </div>
 
+      {showFilter && (
+        <select
+          value={selectedCategory}
+          onChange={(e) =>
+            setSelectedCategory(e.target.value)
+          }
+          className="category-filter"
+       >
+          <option value="">
+            All Categories
+          </option>
+
+          <option value="Programming">
+            Programming
+          </option>
+
+          <option value="Backend Basics">
+            Backend Basics
+          </option>
+
+          <option value="Frontend Basics">
+            Frontend Basics
+          </option>
+
+          <option value="JavaScript Advanced">
+            JavaScript Advanced
+          </option>
+
+          <option value="Self Help">
+            Self Help
+          </option>
+        </select>
+      )}
+
       {books.length === 0 ? (
         <p>No books found</p>
       ) : (
         <div className="books-grid">
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <div
               key={book._id}
               className="book-card"
@@ -228,14 +293,22 @@ function Books() {
             >
             {book.coverImage && (
               <div className="book-image-wrapper">
-                {token && (
-                  <button
-                    onClick={() => addToFavorites(book)}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+
+                    if (!token) {
+                      navigate("/login");
+                      return;
+                    }
+
+                    addToFavorites(book);
+                  }}
                     className="favorite-btn"
-                  >
-                    {isFavorite(book._id) ? "❤️" : "🤍"}
-                  </button>
-                )}
+                >
+                   {isFavorite(book._id) ? "❤️" : "🤍"}
+                </button>
+
 
                 <img
                   src={book.coverImage}
@@ -243,12 +316,18 @@ function Books() {
                   className="book-image"
                 />
 
-                {token &&
-                  (isInCart(book._id) ? (
+                
+                  {isInCart(book._id) ? (
                     <div className="quantity-controls">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+
+                          if (!token) {
+                            navigate("/login");
+                            return;
+                          }
+
                           decreaseQuantity(book._id);
                         }}
                       >
@@ -264,6 +343,12 @@ function Books() {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
+
+                          if (!token) {
+                            navigate("/login");
+                            return;
+                          }
+
                           increaseQuantity(book._id);
                         }}
                       >
@@ -275,12 +360,19 @@ function Books() {
                       className="cart-btn"
                       onClick={(e) => {
                         e.stopPropagation();
+
+                        if (!token) {
+                          navigate("/login");
+                          return;
+                        }
+
                         addToCart(book);
                       }}
                     >
                       Add to Cart
                     </button>
-                  ))}
+                  )}
+
               </div>
             )}
 

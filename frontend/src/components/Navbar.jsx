@@ -28,6 +28,10 @@ function Navbar() {
     navigate("/");
   };
 
+  const cartCount = (
+    JSON.parse(localStorage.getItem("cart")) || []
+  ).length;
+
   return (
     <>
       {token && (
@@ -44,6 +48,20 @@ function Navbar() {
           </div>
 
           <div className="user-section">
+
+            <Link
+              to="/cart"
+              className="cart-link"
+            >
+              🛒
+
+             {cartCount > 0 && (
+               <span className="cart-badge">
+                 {cartCount}
+               </span>
+             )}
+            </Link>
+
             <Link
               to="/notifications"
               className="notification-link"
@@ -76,14 +94,15 @@ function Navbar() {
         {token ? (
           <div className="nav-left">
             <Link to="/">Books</Link>
+           
+
+
 
             <Link to="/favorites">
               Favorites
             </Link>
 
-            <Link to="/cart">
-              Cart
-            </Link>
+            
 
             <Link to="/my-books">
               My Books

@@ -435,15 +435,19 @@ button:hover {
 
 .search-row {
   display: flex;
-  gap: 400px;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 8px;
+  
+}
+
+.filter-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 4px;
 }
 
 .search-row .search-input {
-  flex: 1 1 320px;
+  flex: 1;
   max-width: 520px;
 }
 
@@ -829,4 +833,32 @@ button:hover {
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
+}
+
+.category-filter {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.cart-link {
+  position: relative;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
