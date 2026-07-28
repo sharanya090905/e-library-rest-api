@@ -882,5 +882,73 @@ button:hover {
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
 
+  .navbar.sidebar {
+
+    width: 100%;
+
+    min-height: auto;
+
+    position: fixed;
+
+    top: 70px;
+
+    left: 0;
+
+    margin-top: 0;
+
+    padding: 10px;
+
+    z-index: 999;
+
+  }
+
+
+
+  .nav-left {
+
+    flex-direction: row;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    margin-top: 0;
+
+  }
+
+
+
+  .content {
+
+    margin-left: 0;
+
+    padding-top: 140px;
+
+  }
+
+
+
+  .container {
+
+    width: 100%;
+
+  }
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .content {
+
+    margin-left: 0;
+
+    padding-top: 150px;
+
+  }
+
+}
 
