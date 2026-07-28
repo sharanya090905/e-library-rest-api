@@ -489,6 +489,18 @@ button:hover {
   align-items: start;
 }
 
+@media (max-width: 1024px) {
+  .books-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .book-card {
   background: rgba(242, 255, 236, 0.95);
   padding: 12px;
@@ -504,6 +516,17 @@ button:hover {
 
   position: relative;
 
+}
+
+@media (max-width: 768px) {
+  .book-card {
+    grid-template-columns: 1fr;
+  }
+
+  .book-image {
+    width: 120px;
+    margin: 10px auto 0;
+  }
 }
 
 .book-details {
