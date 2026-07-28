@@ -882,3 +882,8 @@ button:hover {
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .navbar.sidebar {
+    display: none;
+  }
+}
