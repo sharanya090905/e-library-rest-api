@@ -882,8 +882,99 @@ button:hover {
   font-weight: bold;
 }
 
+
+
 @media (max-width: 768px) {
   .navbar.sidebar {
-    display: none;
+    width: 100%;
+    min-height: auto;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    margin-top: 0;
+    padding: 10px;
+    z-index: 999;
+  }
+
+  .nav-left {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: 140px;
+  }
+
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    padding-top: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-card {
+    grid-template-columns: 1fr;
+    padding-right: 12px;
+  }
+
+  .book-details {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    padding: 0 10px;
+  }
+
+  .user-section {
+    gap: 6px;
+    right: 10px;
+  }
+
+  .header-title {
+    font-size: 18px;
+  }
+
+  .logout-btn {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filter-icon {
+    align-self: flex-start;
+  }
+
+  .search-row .search-input {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .add-book-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    padding-top: 150px;
   }
 }
