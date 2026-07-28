@@ -36,7 +36,7 @@ function Navbar() {
     <>
       {token && (
         <header className="top-header">
-          <div className="header-title-wrapper">
+          <Link to="/" className="topbar-brand">
             <img
               src="/EBookLogo.png"
               alt="E-Library logo"
@@ -45,7 +45,7 @@ function Navbar() {
             <div className="header-title">
               E-Library
             </div>
-          </div>
+          </Link>
 
           <div className="user-section">
 
