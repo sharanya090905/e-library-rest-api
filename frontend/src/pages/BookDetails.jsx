@@ -4,8 +4,12 @@ import api from "../services/api";
 
 function BookDetails() {
   const { id } = useParams();
+  
 
   const [book, setBook] = useState(null);
+  const [averageRating, setAverageRating] = useState(0);
+  const [userRating, setUserRating] = useState(0);
+
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -13,6 +17,7 @@ function BookDetails() {
         const response = await api.get(`/books/${id}`);
 
         setBook(response.data.data);
+        setAverageRating(response.data.averageRating);
       } catch (error) {
         console.log(error);
       }
@@ -24,6 +29,31 @@ function BookDetails() {
   if (!book) {
     return <h2>Loading...</h2>;
   }
+
+  const handleRating = async (rating) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    await api.post(
+      `/books/${id}/rate`,
+      { rating },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    setUserRating(rating);
+
+    alert("Rating submitted successfully");
+  } catch (error) {
+  console.log(error);
+  console.log(error.response?.data);
+
+  alert("Failed to submit rating");
+}
+};
 
   return (
   <div className="content">
@@ -43,6 +73,28 @@ function BookDetails() {
         <div className="book-details-info">
           <h1>{book.title}</h1>
 
+        <div className="book-rating">
+  {[1, 2, 3, 4, 5].map((star) => (
+    <span
+      key={star}
+      className={
+        star <= userRating
+          ? "star-filled"
+          : "star-empty"
+      }
+      onClick={() => handleRating(star)}
+    >
+      ★
+    </span>
+  ))}
+
+
+
+
+          <span className="rating-number">
+            {averageRating}
+          </span>
+        </div>
           <p>
             <strong>Author:</strong> {book.author}
           </p>
@@ -84,10 +136,15 @@ function BookDetails() {
           </p>
 
           <p>{book.description}</p>
+
+          
         </div>
 
+        
+
       </div>
-    </div>
+
+ </div>
 </div>
    
 );

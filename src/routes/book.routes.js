@@ -7,7 +7,8 @@ const {
     getAllBooks,
     getBookById,
     updateBook,
-    deleteBook
+    deleteBook,
+    rateBook,
 } = require("../controllers/book.controller");
 
 const router = express.Router();
@@ -29,4 +30,10 @@ router.patch(
 
 
 router.delete("/:id", authenticate, deleteBook);
+router.post(
+  "/:id/rate",
+  authenticate,
+  rateBook
+);
+
 module.exports = router;

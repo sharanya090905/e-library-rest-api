@@ -67,7 +67,25 @@ const bookSchema = new mongoose.Schema({
   createdBy: {
   type: String,
   required: true,
-}
+},
+
+ratings: [
+  {
+    userId: {
+      type: String,
+      required: true,
+    },
+
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+  },
+],
+
+
 
 });
 

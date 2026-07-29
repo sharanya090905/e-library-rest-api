@@ -65,9 +65,20 @@ const getBookById = async (req, res) => {
             });
         }
 
+        const averageRating =
+          book.ratings.length > 0
+            ? (
+                book.ratings.reduce(
+                  (sum, item) => sum + item.rating,
+                  0
+                ) / book.ratings.length
+              ).toFixed(1)
+            : 0;
+
         res.status(200).json({
-            success: true,
-            data: book,
+          success: true,
+          data: book,
+          averageRating,
         });
 
     } catch (error) {
@@ -157,10 +168,53 @@ const deleteBook = async (req, res) => {
   }
 };
 
+const rateBook = async (req, res) => {
+  try {
+    const { rating } = req.body;
+
+    const userId = req.user.sub;
+
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+      return res.status(404).json({
+        success: false,
+        message: "Book not found",
+      });
+    }
+
+    const existingRating = book.ratings.find(
+      (item) => item.userId === userId
+    );
+
+    if (existingRating) {
+      existingRating.rating = rating;
+    } else {
+      book.ratings.push({
+        userId,
+        rating,
+      });
+    }
+
+    await book.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Rating saved successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createBook,
   getAllBooks,
   getBookById,
   updateBook,
-  deleteBook
+  deleteBook,
+  rateBook
 };

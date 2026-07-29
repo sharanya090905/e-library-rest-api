@@ -17,6 +17,7 @@ function EditBook() {
   const [pages, setPages] = useState("");
   const [language, setLanguage] = useState("");
   const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [coverImage, setCoverImage] = useState(null);
   const [existingCover, setExistingCover] = useState("");
@@ -39,6 +40,7 @@ function EditBook() {
         setPrice(book.price);
         setSubCategory(book.subCategory || "");
         setCategory(book.category);
+        setCategory(book.description);
         setExistingCover(book.coverImage || "");
       } catch (error) {
         console.log(error);
@@ -66,6 +68,7 @@ function EditBook() {
       formData.append("language", language);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
+      formData.append("description", description);
 
       if (coverImage) {
         formData.append("coverImage", coverImage);
@@ -226,6 +229,19 @@ function EditBook() {
 
           <br />
           <br />
+
+          <input
+            type="text"
+            placeholder="Description"
+            value={description}
+            onChange={(e) =>
+              setDescription(e.target.value)
+            }
+          />
+
+          <br />
+          <br />
+
 
         {existingCover && !coverImage && (
           <div>

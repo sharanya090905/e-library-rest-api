@@ -892,7 +892,7 @@ button:hover {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 12px 20px rgba(46, 81, 34, 0.12);
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 .book-details-image-wrapper {
@@ -910,6 +910,15 @@ button:hover {
 .book-details-info {
   flex: 1;
   text-align: left;
+  position: relative;
+}
+
+.book-rating {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  color: #fbbf24;
 }
 
 .book-details-info h1 {
@@ -928,6 +937,33 @@ button:hover {
   color: #1f441d;
 }
 
+.book-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.star-filled {
+  color: #fbbf24;
+  font-size: 24px;
+}
+
+.star-empty {
+  color: #d1d5db;
+  font-size: 24px;
+}
+
+.rating-number {
+  margin-left: 8px;
+  color: #555;
+  font-weight: 600;
+}
+
+.star-filled,
+.star-empty {
+  cursor: pointer;
+}
 
 @media (max-width: 768px) {
 

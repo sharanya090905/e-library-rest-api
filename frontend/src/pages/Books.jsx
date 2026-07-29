@@ -377,9 +377,7 @@ function Books() {
 
               <h2>{book.title}</h2>
 
-              <p className="book-description">
-                 {book.description}
-              </p>
+              
 
               <p>
                 <strong>Author:</strong>{" "}
