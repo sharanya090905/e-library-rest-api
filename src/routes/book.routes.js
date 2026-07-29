@@ -7,6 +7,7 @@ const {
     getAllBooks,
     getBookById,
     updateBook,
+    getSuggestedBooks,
     deleteBook,
     rateBook,
     addReview,
@@ -21,6 +22,7 @@ router.post(
   createBook
 );
 router.get("/", getAllBooks);
+router.get("/:id/suggestions", getSuggestedBooks);
 router.get("/:id", getBookById);
 router.patch(
   "/:id",

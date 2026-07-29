@@ -1,32 +1,43 @@
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
 function BookDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   
 
   const [book, setBook] = useState(null);
   const [averageRating, setAverageRating] = useState(0);
+  const [suggestedBooks, setSuggestedBooks] = useState([]);
   const [userRating, setUserRating] = useState(0);
   const [comment, setComment] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
+  
 
 
-  useEffect(() => {
-    const fetchBook = async () => {
-      try {
-        const response = await api.get(`/books/${id}`);
+  const fetchBook = async () => {
+  try {
+    const response = await api.get(`/books/${id}`);
 
-        setBook(response.data.data);
-        setAverageRating(response.data.averageRating);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    setBook(response.data.data);
+    setAverageRating(response.data.averageRating);
 
-    fetchBook();
-  }, [id]);
+    const suggestionResponse =
+      await api.get(`/books/${id}/suggestions`);
+
+    setSuggestedBooks(
+      suggestionResponse.data.data
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+useEffect(() => {
+  fetchBook();
+}, [id]);
 
   if (!book) {
     return <h2>Loading...</h2>;
@@ -233,9 +244,39 @@ function BookDetails() {
         <p className="review-user">
           {review.userName}
         </p>
+
+
       </div>
-    ))}
+
+     ))}
+
+    
   </div>
+</div>
+
+<div className="suggested-books-section">
+  <h2>Suggested Books</h2>
+
+  <div className="suggested-books-grid">
+  {suggestedBooks?.map((book) => (
+    <div
+      key={book._id}
+      className="suggested-book-card"
+      onClick={() => navigate(`/book/${book._id}`)}
+    >
+      {book.coverImage && (
+              <img
+                src={book.coverImage}
+                alt={book.title}
+                className="book-image"
+              />
+            )}
+
+      <h3>{book.title}</h3>
+      <p>{book.author}</p>
+    </div>
+  ))}
+</div>
 </div>
 
         </div>

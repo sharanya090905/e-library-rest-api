@@ -89,6 +89,34 @@ const getBookById = async (req, res) => {
     }
 };
 
+const getSuggestedBooks = async (req, res) => {
+  try {
+    const currentBook = await Book.findById(req.params.id);
+
+    if (!currentBook) {
+      return res.status(404).json({
+        success: false,
+        message: "Book not found",
+      });
+    }
+
+    const suggestedBooks = await Book.find({
+      category: currentBook.category,
+      _id: { $ne: currentBook._id },
+    }).limit(6);
+
+    res.status(200).json({
+      success: true,
+      data: suggestedBooks,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 const updateBook = async (req, res) => {
   try {
     console.log("updateBook req.body", req.body);
@@ -253,8 +281,10 @@ module.exports = {
   createBook,
   getAllBooks,
   getBookById,
+  getSuggestedBooks,
   updateBook,
   deleteBook,
   rateBook,
-  addReview
+  addReview,
+  
 };
