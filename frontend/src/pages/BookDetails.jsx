@@ -11,6 +11,7 @@ function BookDetails() {
   const [book, setBook] = useState(null);
   const [averageRating, setAverageRating] = useState(0);
   const [suggestedBooks, setSuggestedBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState([]);
   const [userRating, setUserRating] = useState(0);
   const [comment, setComment] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
@@ -18,22 +19,32 @@ function BookDetails() {
 
 
   const fetchBook = async () => {
-  try {
-    const response = await api.get(`/books/${id}`);
+    try {
+      const response = await api.get(`/books/${id}`);
 
-    setBook(response.data.data);
-    setAverageRating(response.data.averageRating);
+      setBook(response.data.data);
+      setAverageRating(response.data.averageRating);
 
-    const suggestionResponse =
-      await api.get(`/books/${id}/suggestions`);
+      const suggestionResponse =
+        await api.get(`/books/${id}/suggestions`);
 
-    setSuggestedBooks(
-      suggestionResponse.data.data
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+      setSuggestedBooks(
+        suggestionResponse.data.data
+      );
+
+      const allBooksResponse =
+        await api.get("/books");
+      
+      setAllBooks(
+        allBooksResponse.data.data.filter(
+            (item) => item._id !== id
+        )
+      );
+
+    } catch (error) {
+       console.log(error);
+    }
+  };
 
 useEffect(() => {
   fetchBook();
@@ -276,8 +287,39 @@ useEffect(() => {
       <p>{book.author}</p>
     </div>
   ))}
+  
 </div>
+ 
 </div>
+
+<div className="all-books-section">
+  <h2>More Books</h2>
+
+  <div className="suggested-books-grid">
+    {allBooks.map((book) => (
+      <div
+        key={book._id}
+        className="suggested-book-card"
+        onClick={() => navigate(`/book/${book._id}`)}
+      >
+        {book.coverImage && (
+          <img
+            src={book.coverImage}
+            alt={book.title}
+            className="suggested-book-image"
+          />
+        )}
+
+          <h3>{book.title}</h3>
+         <p>{book.author}</p>
+       </div>
+  ))}
+  
+</div>
+ 
+</div>   
+
+        
 
         </div>
 
