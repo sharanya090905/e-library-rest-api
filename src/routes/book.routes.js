@@ -9,6 +9,7 @@ const {
     updateBook,
     deleteBook,
     rateBook,
+    addReview,
 } = require("../controllers/book.controller");
 
 const router = express.Router();
@@ -34,6 +35,12 @@ router.post(
   "/:id/rate",
   authenticate,
   rateBook
+);
+
+router.post(
+  "/:id/review",
+  authenticate,
+  addReview
 );
 
 module.exports = router;

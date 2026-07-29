@@ -210,11 +210,51 @@ const rateBook = async (req, res) => {
   }
 };
 
+const addReview = async (req, res) => {
+  try {
+    const { comment, rating } = req.body;
+
+    const userId = req.user.sub;
+
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+      return res.status(404).json({
+        success: false,
+        message: "Book not found",
+      });
+    }
+
+    const userName =
+      req.body.userName || "Anonymous";
+
+    book.reviews.push({
+      userId,
+      userName,
+      comment,
+      rating,
+    });
+
+    await book.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Review added successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createBook,
   getAllBooks,
   getBookById,
   updateBook,
   deleteBook,
-  rateBook
+  rateBook,
+  addReview
 };

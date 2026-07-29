@@ -9,6 +9,8 @@ function BookDetails() {
   const [book, setBook] = useState(null);
   const [averageRating, setAverageRating] = useState(0);
   const [userRating, setUserRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [reviewRating, setReviewRating] = useState(5);
 
 
   useEffect(() => {
@@ -55,12 +57,47 @@ function BookDetails() {
 }
 };
 
+  const handleReviewSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const token = localStorage.getItem("token");
+    const userName =
+      localStorage.getItem("userName");
+
+    await api.post(
+      `/books/${id}/review`,
+      {
+        userName,
+        comment,
+        rating: reviewRating,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    alert("Review added successfully");
+
+    setComment("");
+
+    await fetchBook();
+  } catch (error) {
+  console.log(error);
+  console.log(error.response?.data);
+
+  alert("Failed to add review");
+}
+};
+
   return (
   <div className="content">
     <div className="container">
       <div className="book-details-page">
 
-        <div className="book-details-image">
+        <div className="book-details-image-wrapper">
             {book.coverImage && (
               <img
                 src={book.coverImage}
@@ -68,6 +105,49 @@ function BookDetails() {
                 className="book-details-image"
              />
             )}
+            <div className="book-price-section">
+                 <span className="book-mrp">
+                   ₹{book.mrp}
+                 </span>
+
+                 <span className="book-price">
+                   ₹{book.price}
+                 </span>
+            </div>
+
+            <div className="review-form-section">
+              <h2>Write a Review</h2>
+
+  <form onSubmit={handleReviewSubmit}>
+    <select
+      value={reviewRating}
+      onChange={(e) =>
+        setReviewRating(Number(e.target.value))
+      }
+    >
+      <option value={5}>5 Stars</option>
+      <option value={4}>4 Stars</option>
+      <option value={3}>3 Stars</option>
+      <option value={2}>2 Stars</option>
+      <option value={1}>1 Star</option>
+    </select>
+
+    <textarea
+      placeholder="Write your review..."
+      value={comment}
+      onChange={(e) =>
+        setComment(e.target.value)
+      }
+      required
+    />
+
+    <button type="submit">
+      Submit Review
+    </button>
+  </form>
+</div>
+
+
           </div>
 
         <div className="book-details-info">
@@ -123,21 +203,41 @@ function BookDetails() {
             <strong>Year:</strong> {book.yearOfPublish}
           </p>
 
-          <p>
-            <strong>MRP:</strong> ₹{book.mrp}
-          </p>
-
-          <p>
-            <strong>Price:</strong> ₹{book.price}
-          </p>
-
+         
           <p>
             <strong>Description:</strong>
           </p>
 
           <p>{book.description}</p>
 
-          
+        
+
+        <div className="reviews-section">
+  <h2>Reviews</h2>
+
+  <div className="reviews-grid">
+    {book.reviews?.map((review) => (
+      <div
+        key={review._id}
+        className="review-card"
+      >
+        <div className="review-stars">
+          {"★".repeat(review.rating)}
+          {"☆".repeat(5 - review.rating)}
+        </div>
+
+        <p className="review-comment">
+          {review.comment}
+        </p>
+
+        <p className="review-user">
+          {review.userName}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
         </div>
 
         

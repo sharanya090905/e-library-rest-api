@@ -85,6 +85,32 @@ ratings: [
   },
 ],
 
+reviews: [
+  {
+    userId: {
+      type: String,
+      required: true,
+    },
+
+    userName: {
+      type: String,
+      required: true,
+    },
+
+    comment: {
+      type: String,
+      required: true,
+    },
+
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+  },
+],
+
 
 
 });

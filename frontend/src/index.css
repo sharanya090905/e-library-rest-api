@@ -965,6 +965,105 @@ button:hover {
   cursor: pointer;
 }
 
+.book-details-image-wrapper {
+  width: 280px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.book-price-section {
+  margin-top: 15px;
+}
+
+.book-mrp {
+  color: #ef4444;
+  text-decoration: line-through;
+  font-size: 22px;
+  margin-right: 15px; /* space between prices */
+}
+
+.book-price {
+  color: #2f5d22;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.reviews-section {
+  margin-top: 40px;
+}
+
+.reviews-section h2 {
+  margin-bottom: 20px;
+  text-align: left;
+  color: #1f441d;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.review-card {
+  background: rgba(242, 255, 236, 0.95);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 8px 16px rgba(46, 81, 34, 0.12);
+}
+
+.review-stars {
+  color: #fbbf24;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.review-comment {
+  color: #304c2e;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.review-user {
+  font-weight: 700;
+  color: #1f441d;
+}
+
+.review-form-section {
+  margin-top: 20px;
+  background: rgba(242, 255, 236, 0.95);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 16px rgba(46, 81, 34, 0.12);
+  text-align: left;
+}
+
+.review-form-section h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  margin-left: 50px;
+}
+
+.review-form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form-section textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+.review-form-section button {
+  background: #2f5d22;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
 
   .navbar.sidebar {
@@ -1023,6 +1122,7 @@ button:hover {
 
 
 
+
 @media (max-width: 768px) {
 
   .content {
@@ -1053,5 +1153,17 @@ button:hover {
 
   .book-details-info h1 {
     font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
   }
 }
